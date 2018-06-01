@@ -1,0 +1,33 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# tsibbledata
+
+This package provides examples of [tsibble](https://github.com/tidyverts/tsibble) datasets which can be used within the tidyverts family of packages.
+
+## Installation
+
+You can install the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("tidyverts/tsibbledata")
+```
+## Example
+
+```{r elecdemand}
+library(tsibbledata)
+head(elecdemand)
+```
+
