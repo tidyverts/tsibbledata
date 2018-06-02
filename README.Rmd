@@ -26,8 +26,8 @@ devtools::install_github("tidyverts/tsibbledata")
 ```
 ## Example
 
-```{r elecdemand}
+```{r elecdemand, message=FALSE}
 library(tsibbledata)
-head(elecdemand)
+elecdemand
 ```
 
