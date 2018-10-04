@@ -37,7 +37,32 @@ NULL
 #' @format Time series of class \code{tsibble}.
 #' @keywords datasets
 #' @examples
-#' 
+#'
 #' UKLungDeaths
-#' 
+#'
+NULL
+
+#' Monthly Medicare Australia prescription data
+#'
+#' \code{PBS} is a monthly tsibble with two values:
+#' \tabular{ll}{
+#'     Scripts:      \tab Total number of scripts\cr
+#'     Cost:     \tab Cost of the scripts in $AUD\cr
+#' }
+#'
+#' The data is disaggregated using four keys:
+#' \tabular{ll}{
+#'     Concession:      \tab Concessional scripts are given to pensioners, unemployed, dependents, and other card holders \cr
+#'     Type:      \tab Co-payments are made until an individual's script expenditure hits a threshold ($290.00 for concession, $1141.80 otherwise). Safety net subsidies are provided to individuals exceeding this amount. \cr
+#'     ATC1:     \tab Anatomical Therapeutic Chemical index (level 1)\cr
+#'     ATC2:     \tab Anatomical Therapeutic Chemical index (level 2)\cr
+#' }
+#'
+#' @name PBS
+#' @format Time series of class `tsibble`
+#' @keywords datasets
+#' @examples
+#'
+#' PBS
+#'
 NULL
