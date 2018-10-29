@@ -15,8 +15,6 @@ events <- cross(list(length = lengths,
            sex = c("men", "women"))) %>%
   map_chr(paste, collapse = "-")
 
-event <- events[2]
-
 parse_athletics <- function(event){
   html <- nod(athletics, paste0("athletics/", event)) %>%
     scrape() %>%
