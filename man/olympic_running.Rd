@@ -19,6 +19,8 @@ The event is identified using two keys:
 Length:     \tab The length of the race\cr
 Sex:     \tab The sex of the event\cr
 }
+
+The data contains missing values in 1916, 1940 and 1944 due to the World Wars.
 }
 \examples{
 library(ggplot2)

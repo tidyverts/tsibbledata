@@ -80,6 +80,8 @@ NULL
 #'     Sex:     \tab The sex of the event\cr
 #' }
 #'
+#' The data contains missing values in 1916, 1940 and 1944 due to the World Wars.
+#'
 #' @source
 #' https://www.olympic.org/athletics
 #'
