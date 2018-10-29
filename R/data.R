@@ -66,3 +66,30 @@ NULL
 #' PBS
 #'
 NULL
+
+#' Fastest running times for Olympic races
+#'
+#' \code{olympic_running} is a quadrennial tsibble with one value:
+#' \tabular{ll}{
+#'     Time:      \tab Fastest running time for the event\cr
+#' }
+#'
+#' The event is identified using two keys:
+#' \tabular{ll}{
+#'     Length:     \tab The length of the race\cr
+#'     Sex:     \tab The sex of the event\cr
+#' }
+#'
+#' @source
+#' https://www.olympic.org/athletics
+#'
+#' @name olympic_running
+#' @format Time series of class `tsibble`
+#' @keywords datasets
+#' @examples
+#' library(ggplot2)
+#' olympic_running %>%
+#'   ggplot(aes(x=Year, y = Time, colour = Sex)) +
+#'   geom_line() +
+#'   facet_wrap(~ Length, scales = "free_y")
+NULL
