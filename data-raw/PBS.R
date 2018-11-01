@@ -61,7 +61,7 @@ PBS <- read_csv("data-raw/PBS.csv", skip = 4) %>%
     Scripts, Cost
   ) %>%
   as_tsibble( # Convert to tsibble
-    key = id(Type | Concession, ATC2 | ATC1),
+    key = id(Concession, Type, ATC1, ATC2),
     index = Month
   )
 
