@@ -90,7 +90,7 @@ NULL
 #' @keywords datasets
 #' @examples
 #' library(ggplot2)
-#' olympic_running %>%
+#' olympic_running %>% as_tibble %>%
 #'   ggplot(aes(x=Year, y = Time, colour = Sex)) +
 #'   geom_line() +
 #'   facet_wrap(~ Length, scales = "free_y")
