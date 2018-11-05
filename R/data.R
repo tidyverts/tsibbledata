@@ -95,3 +95,24 @@ NULL
 #'   geom_line() +
 #'   facet_wrap(~ Length, scales = "free_y")
 NULL
+
+#' Australian retail trade turnover
+#'
+#' \code{ausretail} is a monthly tsibble with one value:
+#' \tabular{ll}{
+#'     Turnover:      \tab Retail turnover in $Million AUD\cr
+#' }
+#'
+#' Each series is uniquely identified using two keys:
+#' \tabular{ll}{
+#'     State:     \tab The Australian state (or territory)\cr
+#'     Industry:     \tab The industry of retail trade\cr
+#' }
+#'
+#' @source
+#' Australian Bureau of Statistics, catalogue number 8501.0, table 11.
+#'
+#' @name ausretail
+#' @format Time series of class `tsibble`
+#' @keywords datasets
+NULL

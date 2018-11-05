@@ -4,7 +4,7 @@ library(tsibble)
 
 series <- read_excel("data-raw/8501011.xlsx", sheet = 2, skip = 9) %>%
   rename(Month = `Series ID`) %>%
-  gather(`Series ID`, Value, -Month) %>%
+  gather(`Series ID`, Turnover, -Month) %>%
   mutate(Month = yearmonth(Month))
 dict <- read_excel("data-raw/8501011.xlsx", sheet = 1, skip = 9) %>%
   filter(`Series Type` == "Original") %>%
