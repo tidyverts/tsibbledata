@@ -16,6 +16,7 @@ dict <- read_excel("data-raw/8501011.xlsx", sheet = 1, skip = 9) %>%
   filter(Industry  != "Total (Industry)")
 
 ausretail <- left_join(dict, series, by = "Series ID") %>%
+  filter(!is.na(Turnover)) %>%
   as_tsibble(key = id(State, Industry), index = Month)
 
 usethis::use_data(ausretail, overwrite = TRUE)
