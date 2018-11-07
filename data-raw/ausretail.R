@@ -13,7 +13,9 @@ dict <- read_excel("data-raw/8501011.xlsx", sheet = 1, skip = 9) %>%
     State = trimws(State),
     Industry = trimws(Industry),
     `Series ID`) %>%
-  filter(Industry  != "Total (Industry)")
+  filter(
+    Industry  != "Total (Industry)",
+    State != "Total (State)")
 
 ausretail <- left_join(dict, series, by = "Series ID") %>%
   filter(!is.na(Turnover)) %>%
