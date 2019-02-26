@@ -116,3 +116,28 @@ NULL
 #' @format Time series of class `tsibble`
 #' @keywords datasets
 NULL
+
+#' Passenger numbers on Ansett airline flights
+#'
+#' The data features a major pilots' industrial dispute which results in some
+#' weeks having zero passengers. There were also at least two changes in the
+#' definitions of passenger classes.
+#'
+#' \code{ansett} is a weekly tsibble with one value:
+#' \tabular{ll}{
+#'     Passengers:  \tab Total air passengers travelling with Ansett\cr
+#' }
+#'
+#' Each series is uniquely identified using two keys:
+#' \tabular{ll}{
+#'     Airports:  \tab The airports that passengers are travelling between (both directions)\cr
+#'     Class:     \tab The class of the ticket.\cr
+#' }
+#'
+#' @source
+#' Ansett Airlines (which no longer exists).
+#'
+#' @name ansett
+#' @format Time series of class `tsibble`
+#' @keywords datasets
+NULL
