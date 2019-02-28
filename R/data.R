@@ -178,3 +178,31 @@ NULL
 #' @format Time series of class `tsibble`
 #' @keywords datasets
 NULL
+
+#' GAFA stock prices
+#'
+#' Historical stock prices from 2014-2018 for Google, Amazon, Facebook and Apple.
+#' All prices are in $USD.
+#'
+#' \code{gafa_stock} is a tsibble containing data on trading days:
+#' \tabular{ll}{
+#'     Open:      \tab The opening price for the stock.\cr
+#'     High:      \tab The stock's highest trading price.\cr
+#'     Low:       \tab The stock's lowest trading price.\cr
+#'     Close:     \tab The closing price for the stock.\cr
+#'     Adj_Close: \tab The adjusted closing price for the stock.\cr
+#'     Volume:    \tab The amount of stock traded.\cr
+#' }
+#'
+#' Each stock is uniquely identified by one key:
+#' \tabular{ll}{
+#'     Symbol:      \tab The ticker symbol for the stock.\cr
+#' }
+#'
+#' @source
+#' Yahoo Finance historical data, https://finance.yahoo.com/
+#'
+#' @name gafa_stock
+#' @format Time series of class `tsibble`
+#' @keywords datasets
+NULL
