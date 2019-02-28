@@ -25,6 +25,6 @@ nyc_bikes <- nyc_bikes %>%
     type = factor(usertype),
     birth_year = `birth year`,
     gender = factor(gender, 0:2, c("Unknown", "Male", "Female"))) %>%
-  as_tsibble(key = id(bike_id), index = start_time)
+  as_tsibble(key = id(bike_id), index = start_time, regular = FALSE)
 
 usethis::use_data(nyc_bikes, overwrite=TRUE)
