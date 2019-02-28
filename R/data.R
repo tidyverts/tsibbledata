@@ -229,14 +229,14 @@ NULL
 #'
 #' Economic indicators featured by the World Bank from 1960 to 2017.
 #'
-#' \code{pelt} is an annual tsibble with two values:
+#' \code{global_economy} is an annual tsibble with two values:
 #' \tabular{ll}{
 #'     GDP:       \tab Gross domestic product (in $USD February 2019).\cr
 #'     Growth:    \tab Annual percentage growth in GDP.\cr
 #'     CPI:       \tab Consumer price index (base year 2010).\cr
-#'     Imports:   \tab Imports of goods and services (% of GDP).\cr
-#'     Exports:   \tab Exports of goods and services (% of GDP).\cr
-#'     Population:\tab Total population.\cr
+#'     Imports:   \tab Imports of goods and services (\% of GDP).\cr
+#'     Exports:   \tab Exports of goods and services (\% of GDP).\cr
+#'     Population:\tab Total population.
 #' }
 #'
 #' Each series is uniquely identified by one key:
