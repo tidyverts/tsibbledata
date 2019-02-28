@@ -141,3 +141,40 @@ NULL
 #' @format Time series of class `tsibble`
 #' @keywords datasets
 NULL
+
+
+#' NYC Citi Bike trips
+#'
+#' A sample from NYC Citi Bike usage of 10 bikes throughout 2018. The data
+#' includes event data on each trip, including the trip's start and end times
+#' and locations. The customer's gender, birth year and bike usage type is
+#' also available.
+#'
+#' \code{nyc_bikes} is a tsibble containing event data, the events include
+#' these details:
+#' \tabular{ll}{
+#'     start_time:   \tab The time and date when the trip was started.\cr
+#'     stop_time:    \tab The time and date when the trip was ended.\cr
+#'     start_station:\tab A unique identifier for the starting bike station.\cr
+#'     start_lat:    \tab The latitutde of the starting bike station.\cr
+#'     start_long:   \tab The longitude of the starting bike station.\cr
+#'     end_station:  \tab A unique identifier for the destination bike station.\cr
+#'     end_lat:      \tab The latitutde of the destination bike station.\cr
+#'     end_long:     \tab The longitude of the destination bike station.\cr
+#'     type:         \tab The type of trip. A "Customer" has purchased either a 24-hour or 3-day pass, and a "Subscriber" has purchased an annual subscription.\cr
+#'     birth_year    \tab The bike rider's year of birth.\cr
+#'     gender:       \tab The gender of the bike rider.\cr
+#' }
+#'
+#' Each series is uniquely identified by one key:
+#' \tabular{ll}{
+#'     bike_id:      \tab A unique identifier for the bike.\cr
+#' }
+#'
+#' @source
+#' Citi Bike NYC, https://www.citibikenyc.com/system-data
+#'
+#' @name nyc_bikes
+#' @format Time series of class `tsibble`
+#' @keywords datasets
+NULL
