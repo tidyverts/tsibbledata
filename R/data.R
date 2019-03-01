@@ -98,7 +98,7 @@ NULL
 
 #' Australian retail trade turnover
 #'
-#' \code{ausretail} is a monthly tsibble with one value:
+#' \code{aus_retail} is a monthly tsibble with one value:
 #' \tabular{ll}{
 #'     Turnover:      \tab Retail turnover in $Million AUD\cr
 #' }
@@ -112,7 +112,7 @@ NULL
 #' @source
 #' Australian Bureau of Statistics, catalogue number 8501.0, table 11.
 #'
-#' @name ausretail
+#' @name aus_retail
 #' @format Time series of class `tsibble`
 #' @keywords datasets
 NULL
