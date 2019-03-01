@@ -252,3 +252,25 @@ NULL
 #' @keywords datasets
 NULL
 
+#' Australian livestock slaughter
+#'
+#' Meat production in Australia for human consumption from Q3 1965 to Q4 2018.
+#'
+#' \code{aus_livestock} is an quarterly tsibble with one value:
+#' \tabular{ll}{
+#'     Count:    \tab Number of animals slaughtered.\cr
+#' }
+#'
+#' Each series is uniquely identified by one key:
+#' \tabular{ll}{
+#'     Animal:   \tab The animal slaughtered.\cr
+#' }
+#'
+#' @source
+#' Australian Bureau of Statistics, catalogue number 7215.0, table 1 and 2.
+#'
+#' @name aus_livestock
+#' @format Time series of class `tsibble`
+#' @keywords datasets
+NULL
+
