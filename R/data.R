@@ -230,3 +230,35 @@ NULL
 #' @keywords datasets
 NULL
 
+#' Half-hourly electricity demand for five Australian states
+#'
+#' \code{aus_elec} is a half-hourly tsibble with one value:
+#'   \tabular{ll}{
+#'     Demand:      \tab Total electricity demand in MW.\cr
+#' }
+#'
+#' Each series is uniquely identified by one key:
+#' \tabular{ll}{
+#'     State:   \tab An Australian state.\cr
+#' }
+#'
+#' This data is for operational demand, which is the demand met by local
+#' scheduled generating units, semi-scheduled generating units, and
+#' non-scheduled intermittent generating units of aggregate capacity larger
+#' than 30 MW, and by generation imports to the region. The operational demand
+#' excludes the demand met by non-scheduled non-intermittent generating units,
+#' non-scheduled intermittent generating units of aggregate capacity smaller
+#' than 30 MW, exempt generation (e.g. rooftop solar, gas tri-generation, very
+#' small wind farms, etc), and demand of local scheduled loads. It also
+#' excludes some very large industrial users (such as mines or smelters).
+#'
+#' @name aus_elec
+#' @docType data
+#' @format Time series of class \code{tsibble}.
+#' @source Australian Energy Market Operator.
+#' @keywords datasets
+#' @examples
+#'
+#' aus_elec
+#'
+NULL
