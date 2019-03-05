@@ -16,6 +16,7 @@ data <- map_dfr(files, read_excel, sheet = 2, skip = 9) %>%
   filter(!is.na(Count))
 
 aus_livestock <- left_join(series, data, by = "Series ID") %>%
-  transmute(Quarter, Animal, Count = Count * 1000)
+  transmute(Quarter, Animal, Count = Count * 1000) %>%
+  as_tsibble(index = Quarter, key = id(Animal))
 
 usethis::use_data(aus_livestock, overwrite=TRUE)
