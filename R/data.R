@@ -262,3 +262,30 @@ NULL
 #' aus_elec
 #'
 NULL
+
+#' Quarterly production of selected commodities in Australia.
+#'
+#' Quarterly estimates of selected indicators of manufacturing production in Australia.
+#'
+#' \code{aus_production} is a half-hourly tsibble with six values:
+#'   \tabular{ll}{
+#'     Beer:       \tab Beer production in megalitres.\cr
+#'     Tobacco:    \tab Tobacco and cigarette production in tonnes.\cr
+#'     Bricks:     \tab Clay brick production in millions of bricks.\cr
+#'     Cement:     \tab Portland cement production in thousands of tonnes.\cr
+#'     Electricity:\tab Electricity production in gigawatt hours.\cr
+#'     Gas:        \tab Gas production in petajoules.\cr
+#' }
+#'
+#' @name aus_production
+#' @docType data
+#' @format Time series of class \code{tsibble}.
+#' @source
+#' Australian Bureau of Statistics, catalogue number 8301.0.55.001 table 1.
+#'
+#' @keywords datasets
+#' @examples
+#'
+#' aus_production
+#'
+NULL
