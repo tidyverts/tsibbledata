@@ -17,6 +17,7 @@ aus_livestock <- readabs::read_abs_local(path = "data-raw/aus_livestock/ABS/") %
   ) %>%
   select(Month, everything(), -date, -Series, -Empty) %>%
   rename(Count = value) %>%
-  filter(!is.na(Count))
+  filter(!is.na(Count)) %>%
+  as_tsibble(key = id(Animal, State), index = Month)
 
 usethis::use_data(aus_livestock, overwrite=TRUE)
