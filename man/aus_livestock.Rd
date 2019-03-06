@@ -5,7 +5,7 @@
 \title{Australian livestock slaughter}
 \format{Time series of class \code{tsibble}}
 \source{
-Australian Bureau of Statistics, catalogue number 7215.0, table 1 and 2.
+Australian Bureau of Statistics, catalogue number 7218.0.55.001 tables 1 to 6.
 }
 \description{
 Meat production in Australia for human consumption from Q3 1965 to Q4 2018.

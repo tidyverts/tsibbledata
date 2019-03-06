@@ -223,7 +223,7 @@ NULL
 #' }
 #'
 #' @source
-#' Australian Bureau of Statistics, catalogue number 7215.0, table 1 and 2.
+#' Australian Bureau of Statistics, catalogue number 7218.0.55.001 tables 1 to 6.
 #'
 #' @name aus_livestock
 #' @format Time series of class `tsibble`
