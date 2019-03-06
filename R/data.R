@@ -140,7 +140,7 @@ NULL
 #' Historical stock prices from 2014-2018 for Google, Amazon, Facebook and Apple.
 #' All prices are in $USD.
 #'
-#' \code{gafa_stock} is a tsibble containing data on trading days:
+#' \code{gafa_stock} is a tsibble containing data on irregular trading days:
 #' \tabular{ll}{
 #'     Open:      \tab The opening price for the stock.\cr
 #'     High:      \tab The stock's highest trading price.\cr
