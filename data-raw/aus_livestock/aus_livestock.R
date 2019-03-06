@@ -13,7 +13,8 @@ aus_livestock <- readabs::read_abs_local(path = "data-raw/aus_livestock/ABS/") %
   filter(State != "Total (State)") %>%
   mutate(
     Animal = factor(Animal),
-    State = factor(State)
+    State = factor(State),
+    value = value*1e3
   ) %>%
   select(Month, everything(), -date, -Series, -Empty) %>%
   rename(Count = value) %>%
