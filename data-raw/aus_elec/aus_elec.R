@@ -30,7 +30,7 @@ aus_elec <- demands %>%
     Date = as_date(Time)
   ) %>%
   left_join(holidays, by = c("State", "Date")) %>%
-  mutate(State = recode(State, NSW2015 = "New South Whales", VIC2015 = "Victoria",
+  mutate(State = recode(State, NSW2015 = "New South Wales", VIC2015 = "Victoria",
                         SA2015 = "South Australia", QLD2015 = "Queensland",
                         TAS2015 = "Tasmania")) %>%
   replace_na(list(Holiday = FALSE)) %>%
