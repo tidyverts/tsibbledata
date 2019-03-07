@@ -232,9 +232,11 @@ NULL
 
 #' Half-hourly electricity demand for five Australian states
 #'
-#' \code{aus_elec} is a half-hourly tsibble with one value:
+#' \code{aus_elec} is a half-hourly tsibble with three values:
 #'   \tabular{ll}{
 #'     Demand:      \tab Total electricity demand in MW.\cr
+#'     Temperature: \tab Temperature from the state's major city.\cr
+#'     Holiday:     \tab Indicator for if that day is a public holiday.\cr
 #' }
 #'
 #' Each series is uniquely identified by one key:
