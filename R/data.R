@@ -46,6 +46,7 @@ NULL
 #' @keywords datasets
 #' @examples
 #' library(ggplot2)
+#' library(tsibble)
 #' olympic_running %>% as_tibble %>%
 #'   ggplot(aes(x=Year, y = Time, colour = Sex)) +
 #'   geom_line() +
