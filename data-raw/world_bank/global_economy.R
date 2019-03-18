@@ -1,4 +1,5 @@
 library(tidyverse)
+library(tsibble)
 
 global_economy <- read_csv("data-raw/world_bank/WDIData.csv") %>%
   filter(`Indicator Code` %in% c("NY.GDP.MKTP.CD", "NY.GDP.MKTP.KD.ZG",
