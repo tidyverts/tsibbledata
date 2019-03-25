@@ -292,3 +292,36 @@ NULL
 #' aus_production
 #'
 NULL
+
+#' Household budget characteristics
+#'
+#' Annual indicators of household budgets for Australia, Japan, Canada and USA
+#' from 1995-2016.
+#'
+#' \code{hh_budget} is an annual tsibble with six values:
+#'   \tabular{ll}{
+#'     Debt:         \tab Debt as a percentage of net disposable income.\cr
+#'     DI:           \tab Annual growth rate of disposible income.\cr
+#'     Expenditure:  \tab Annual growth rate of expenditure.\cr
+#'     Savings:      \tab Savings as a percentage of household disposable income.\cr
+#'     Wealth:       \tab Wealth as a percentage of net disposable income.\cr
+#'     Unemployment: \tab Percentage of unemployed in the labour force.\cr
+#' }
+#'
+#' Each country is uniquely identified by one key:
+#' \tabular{ll}{
+#'     Country:   \tab The country of the series.\cr
+#' }
+#'
+#' @name hh_budget
+#' @docType data
+#' @format Time series of class \code{tsibble}.
+#' @source
+#' The Organisation for Economic Co-operation and Development (https://data.oecd.org/)
+#'
+#' @keywords datasets
+#' @examples
+#'
+#' hh_budget
+#'
+NULL
