@@ -7,7 +7,6 @@ gafa_stock <- list.files("data-raw/gafa_stock", full.names = TRUE, pattern = "*.
   map_dfr(read_csv, .id = "Symbol") %>%
   rename(Adj_Close = `Adj Close`) %>%
   filter(year(Date) >= 2014, year(Date) <= 2018) %>%
-  mutate(Symbol = factor(Symbol)) %>%
   as_tsibble(key = id(Symbol), index = Date, regular = FALSE)
 
 usethis::use_data(gafa_stock, overwrite=TRUE)
