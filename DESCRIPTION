@@ -3,8 +3,8 @@ Version: 0.0.0.9000
 Title: Example Datasets for tsibble
 Description: This data package provides datasets in the correct structure for learning and testing the tidyverts family of packages.
 Authors@R: c(
-    person("Rob", "Hyndman", email="Rob.Hyndman@monash.edu", role = c("aut", "cre", "cph")),
-    person("Mitchell", "O'Hara-Wild", role = "aut"),
+    person("Mitchell", "O'Hara-Wild", email = "mail@mitchelloharawild.com", role = c("aut", "cre")),
+    person("Rob", "Hyndman", role = "aut"),
     person("Earo", "Wang", role = "aut")
     )
 Depends:
