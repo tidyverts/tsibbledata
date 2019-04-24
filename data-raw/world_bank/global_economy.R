@@ -20,6 +20,6 @@ global_economy <- read_csv("data-raw/world_bank/WDIData.csv") %>%
     Exports = `Exports of goods and services (% of GDP)`,
     Population = `Population, total`
   ) %>%
-  as_tsibble(key = id(`Country`), index = Year)
+  as_tsibble(key = Country, index = Year)
 
 usethis::use_data(global_economy, overwrite=TRUE)

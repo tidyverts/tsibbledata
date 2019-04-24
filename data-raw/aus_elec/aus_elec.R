@@ -36,6 +36,6 @@ aus_elec <- demands %>%
   replace_na(list(Holiday = FALSE)) %>%
   select(-Date) %>%
   filter(year(Time) %in% 2012:2014) %>%
-  as_tsibble(key = id(State), index = Time)
+  as_tsibble(key = State, index = Time)
 
 usethis::use_data(aus_elec, overwrite = TRUE)

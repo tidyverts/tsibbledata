@@ -15,6 +15,6 @@ hh_budget <- list.files("data-raw/oecd_household/", pattern = ".csv", full.names
   filter(between(Year, 1995, 2016)) %>%
   rename(Debt = HHDEBT, DI = HHDI, Expenditure = HHEXP,
          Savings = HHSAV, Wealth = HHWEALTH, Unemployment = UNEMP) %>%
-  as_tsibble(key = id(Country), index = Year)
+  as_tsibble(key = Country, index = Year)
 
 usethis::use_data(hh_budget, overwrite=TRUE)

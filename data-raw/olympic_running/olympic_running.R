@@ -51,7 +51,7 @@ olympic_running <- map_dfr(events, parse_athletics) %>%
   ungroup %>%
   arrange(Year, Length) %>%
   mutate(Length = fct_relevel(Length, lengths)) %>%
-  as_tsibble(key = id(Length, Sex), index = Year) %>%
+  as_tsibble(key = c(Length, Sex), index = Year) %>%
   fill_na()
 
 usethis::use_data(olympic_running, overwrite=TRUE)

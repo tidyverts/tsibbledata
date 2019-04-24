@@ -20,7 +20,7 @@ ATC1_def <- tribble(
   "V", "Various"
 )
 
-PBS <- read_csv("data-raw/PBS.csv", skip = 4) %>%
+PBS <- read_csv("data-raw/PBS/PBS.csv", skip = 4) %>%
   rename( # Add missing names
     Concession = X1,
     ATC1 = X2,
@@ -61,7 +61,7 @@ PBS <- read_csv("data-raw/PBS.csv", skip = 4) %>%
     Scripts, Cost
   ) %>%
   as_tsibble( # Convert to tsibble
-    key = id(Concession, Type, ATC1, ATC2),
+    key = c(Concession, Type, ATC1, ATC2),
     index = Month
   )
 

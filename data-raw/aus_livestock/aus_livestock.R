@@ -22,6 +22,6 @@ aus_livestock <- readabs::read_abs_local(path = "data-raw/aus_livestock/ABS/") %
   group_by(Animal, State) %>%
   filter(sum(Count) != 0) %>%
   ungroup() %>%
-  as_tsibble(key = id(Animal, State), index = Month)
+  as_tsibble(key = c(Animal, State), index = Month)
 
 usethis::use_data(aus_livestock, overwrite=TRUE)
