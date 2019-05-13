@@ -6,7 +6,7 @@ holidays <- list.files("data-raw/aus_elec", pattern = "holidays.txt",
            recursive = TRUE, full.names = TRUE) %>%
   set_names(basename(dirname(.))) %>%
   map_dfr(read_csv, col_names = FALSE, .id = "State") %>%
-  transmute(State, Date = as.Date(X1), Holiday = TRUE)
+  transmute(State, Date = as.Date(X1, format = "%d/%m/%Y"), Holiday = TRUE)
 
 
 # TAS:Hobart, VIC:Melbourne, QLD:Brisbane, NSW:Sydney, SA:Adelaide
