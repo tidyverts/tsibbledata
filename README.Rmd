@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 ```
 # tsibbledata
 
-This package provides examples of [tsibble](https://github.com/tidyverts/tsibble) datasets which can be used within the tidyverts family of packages.
+This package provides examples of [tsibble](https://tsibble.tidyverts.org/) datasets which can be used within the [tidyverts](https://tidyverts.org/) family of packages.
 
 ## Installation
 
@@ -26,8 +26,17 @@ devtools::install_github("tidyverts/tsibbledata")
 ```
 ## Example
 
-```{r elecdemand, message=FALSE}
+```{r elecdemand, message = FALSE, warning = FALSE}
 library(tsibbledata)
-elecdemand
+library(tidyverse)
+olympic_running %>%
+  ggplot(aes(x=Year, y = Time, colour = Sex)) +
+  geom_line() +
+  geom_point(size = 1) +
+  facet_wrap(~ Length, scales = "free_y", nrow = 2) + 
+  theme_minimal() + 
+  scale_color_brewer(palette = "Dark2") + 
+  theme(legend.position = "bottom", legend.title = element_blank()) +
+  ylab("Running time (seconds)")
 ```
 
