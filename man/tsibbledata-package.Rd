@@ -6,6 +6,8 @@
 \alias{tsibbledata-package}
 \title{tsibbledata: Diverse Datasets for tsibble}
 \description{
+\if{html}{\figure{logo.png}{options: align='right'}}
+
 This data package provides many datasets in the tsibble format which are suitable for learning and testing the tsibble and its extension packages.
 }
 \seealso{
