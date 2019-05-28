@@ -4,9 +4,9 @@
 \name{tsibbledata-package}
 \alias{tsibbledata}
 \alias{tsibbledata-package}
-\title{tsibbledata: Example Datasets for tsibble}
+\title{tsibbledata: Diverse Datasets for tsibble}
 \description{
-This data package provides datasets in the correct structure for learning and testing the tidyverts family of packages.
+This data package provides many datasets in the tsibble format which are suitable for learning and testing the tsibble and its extension packages.
 }
 \seealso{
 Useful links:
@@ -17,11 +17,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Rob Hyndman \email{Rob.Hyndman@monash.edu} [copyright holder]
+\strong{Maintainer}: Mitchell O'Hara-Wild \email{mail@mitchelloharawild.com}
 
 Authors:
 \itemize{
-  \item Mitchell O'Hara-Wild
+  \item Rob Hyndman
   \item Earo Wang
 }
 

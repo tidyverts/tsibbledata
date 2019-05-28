@@ -1,7 +1,7 @@
 Package: tsibbledata
 Version: 0.0.0.9000
-Title: Example Datasets for tsibble
-Description: This data package provides datasets in the correct structure for learning and testing the tidyverts family of packages.
+Title: Diverse Datasets for tsibble
+Description: This data package provides many datasets in the tsibble format which are suitable for learning and testing the tsibble and its extension packages.
 Authors@R: c(
     person("Mitchell", "O'Hara-Wild", email = "mail@mitchelloharawild.com", role = c("aut", "cre")),
     person("Rob", "Hyndman", role = "aut"),
