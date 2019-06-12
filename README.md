@@ -1,7 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# tsibbledata <img src='man/figures/logo.png' align="right" height="138.5" />
+# tsibbledata <a href='https://tsibbledata.tidyverts.org'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
+
+[![Travis build
+status](https://travis-ci.org/tidyverts/tsibbledata.svg?branch=master)](https://travis-ci.org/tidyverts/tsibbledata)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/tsibbledata)](https://cran.r-project.org/package=tsibbledata)
 
 This package provides examples of
 [tsibble](https://tsibble.tidyverts.org/) datasets which can be used
