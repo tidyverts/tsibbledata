@@ -8,3 +8,4 @@
 0 errors | 0 warnings | 1 note
 
 * This is a new release.
+* The title 'Diverse Datasets for tsibble' does not use title case for tsibble as it is a package.
