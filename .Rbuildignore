@@ -9,3 +9,6 @@ Makefile
 ^docs$
 ^pkgdown$
 ^cran-comments\.md$
+^codecov\.yml$
+^appveyor\.yml$
+^tic\.R$
