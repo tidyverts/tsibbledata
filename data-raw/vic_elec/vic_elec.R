@@ -20,7 +20,7 @@ demands <- list.files("data-raw/aus_elec", pattern = "demand.csv",
   set_names(basename(dirname(.))) %>%
   map_dfr(read_csv, .id = "State")
 
-aus_elec <- demands %>%
+vic_elec <- demands %>%
   left_join(temperatures, by = c("State", "Date", "Period")) %>%
   transmute(
     State,
@@ -34,8 +34,8 @@ aus_elec <- demands %>%
                         SA2015 = "South Australia", QLD2015 = "Queensland",
                         TAS2015 = "Tasmania")) %>%
   replace_na(list(Holiday = FALSE)) %>%
-  select(-Date) %>%
-  filter(year(Time) %in% 2012:2014) %>%
-  as_tsibble(key = State, index = Time)
+  filter(year(Time) %in% 2012:2014, State == "Victoria") %>%
+  select(-State) %>%
+  as_tsibble(index = Time)
 
-usethis::use_data(aus_elec, overwrite = TRUE)
+usethis::use_data(vic_elec, overwrite = TRUE)

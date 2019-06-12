@@ -231,18 +231,13 @@ NULL
 #' @keywords datasets
 NULL
 
-#' Half-hourly electricity demand for five Australian states
+#' Half-hourly electricity demand for Victoria, Australia
 #'
-#' \code{aus_elec} is a half-hourly tsibble with three values:
+#' \code{vic_elec} is a half-hourly tsibble with three values:
 #'   \tabular{ll}{
 #'     Demand:      \tab Total electricity demand in MW.\cr
 #'     Temperature: \tab Temperature from the state's major city.\cr
 #'     Holiday:     \tab Indicator for if that day is a public holiday.\cr
-#' }
-#'
-#' Each series is uniquely identified by one key:
-#' \tabular{ll}{
-#'     State:   \tab An Australian state.\cr
 #' }
 #'
 #' This data is for operational demand, which is the demand met by local
@@ -255,14 +250,14 @@ NULL
 #' small wind farms, etc), and demand of local scheduled loads. It also
 #' excludes some very large industrial users (such as mines or smelters).
 #'
-#' @name aus_elec
+#' @name vic_elec
 #' @docType data
 #' @format Time series of class \code{tsibble}.
 #' @source Australian Energy Market Operator.
 #' @keywords datasets
 #' @examples
 #'
-#' aus_elec
+#' vic_elec
 #'
 NULL
 
