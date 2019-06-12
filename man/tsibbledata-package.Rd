@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right'}}
 
-This data package provides many datasets in the tsibble format which are suitable for learning and testing the tsibble and its extension packages.
+This data package provides diverse datasets in the tsibble data structure. These datasets are useful for learning how tsibble can be applied on a variety of time series tasks.
 }
 \seealso{
 Useful links:
