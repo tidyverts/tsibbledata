@@ -25,9 +25,8 @@ devtools::install_github("tidyverts/tsibbledata")
 
 ``` r
 library(tsibbledata)
-library(tidyverse)
-olympic_running %>%
-  ggplot(aes(x=Year, y = Time, colour = Sex)) +
+library(ggplot2)
+ggplot(olympic_running, aes(x=Year, y = Time, colour = Sex)) +
   geom_line() +
   geom_point(size = 1) +
   facet_wrap(~ Length, scales = "free_y", nrow = 2) + 
