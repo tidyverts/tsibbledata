@@ -29,7 +29,7 @@ reference:
     A diverse collection of datasets.
   contents:
   - ansett
-  - aus_elec
+  - vic_elec
   - aus_livestock
   - aus_production
   - aus_retail
