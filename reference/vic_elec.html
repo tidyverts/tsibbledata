@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Half-hourly electricity demand for five Australian states — aus_elec • tsibbledata</title>
+<title>Half-hourly electricity demand for Victoria, Australia — vic_elec • tsibbledata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,9 +37,9 @@
 
 
 
-<meta property="og:title" content="Half-hourly electricity demand for five Australian states — aus_elec" />
+<meta property="og:title" content="Half-hourly electricity demand for Victoria, Australia — vic_elec" />
 
-<meta property="og:description" content="aus_elec is a half-hourly tsibble with three values:
+<meta property="og:description" content="vic_elec is a half-hourly tsibble with three values:
 Demand:
 Total electricity demand in MW.
 Temperature:Temperature from the state's major city.
@@ -111,14 +111,14 @@ Indicator for if that day is a public holiday.
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Half-hourly electricity demand for five Australian states</h1>
+    <h1>Half-hourly electricity demand for Victoria, Australia</h1>
     <small class="dont-index">Source: <a href='https://github.com/tidyverts/tsibbledata/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>aus_elec.Rd</code></div>
+    <div class="hidden name"><code>vic_elec.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p><code>aus_elec</code> is a half-hourly tsibble with three values:</p><table class='table'>
+    <p><code>vic_elec</code> is a half-hourly tsibble with three values:</p><table class='table'>
 <tr><td></td><td>Demand:</td></tr>
 <tr><td>Total electricity demand in MW.</td><td></td></tr>
 <tr><td>Temperature:</td><td>Temperature from the state's major city.</td></tr>
@@ -139,10 +139,6 @@ Indicator for if that day is a public holiday.
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Each series is uniquely identified by one key:</p><table class='table'>
-<tr><td></td><td>State:</td></tr>
-<tr><td>An Australian state.</td><td></td></tr>
-</table>
     <p>This data is for operational demand, which is the demand met by local
 scheduled generating units, semi-scheduled generating units, and
 non-scheduled intermittent generating units of aggregate capacity larger
@@ -156,21 +152,20 @@ excludes some very large industrial users (such as mines or smelters).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>aus_elec</span></div><div class='output co'>#&gt; # A tsibble: 263,040 x 5 [30m] &lt;UTC&gt;
-#&gt; # Key:       State [5]
-#&gt;    State           Time                Demand Temperature Holiday
-#&gt;    &lt;chr&gt;           &lt;dttm&gt;               &lt;dbl&gt;       &lt;dbl&gt; &lt;lgl&gt;  
-#&gt;  1 New South Wales 2012-01-01 00:00:00  5223.        18.2 TRUE   
-#&gt;  2 New South Wales 2012-01-01 00:30:00  5102.        17.7 TRUE   
-#&gt;  3 New South Wales 2012-01-01 01:00:00  4934.        17.6 TRUE   
-#&gt;  4 New South Wales 2012-01-01 01:30:00  4644.        17.4 TRUE   
-#&gt;  5 New South Wales 2012-01-01 02:00:00  4404.        17.0 TRUE   
-#&gt;  6 New South Wales 2012-01-01 02:30:00  4223.        16.7 TRUE   
-#&gt;  7 New South Wales 2012-01-01 03:00:00  4118.        16.8 TRUE   
-#&gt;  8 New South Wales 2012-01-01 03:30:00  4036.        16.9 TRUE   
-#&gt;  9 New South Wales 2012-01-01 04:00:00  3985.        16.6 TRUE   
-#&gt; 10 New South Wales 2012-01-01 04:30:00  3993.        16.2 TRUE   
-#&gt; # … with 263,030 more rows</div><div class='input'>
+<span class='no'>vic_elec</span></div><div class='output co'>#&gt; # A tsibble: 52,608 x 5 [30m] &lt;UTC&gt;
+#&gt;    Time                Demand Temperature Date       Holiday
+#&gt;    &lt;dttm&gt;               &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;     &lt;lgl&gt;  
+#&gt;  1 2012-01-01 00:00:00  4263.        21.0 2012-01-01 TRUE   
+#&gt;  2 2012-01-01 00:30:00  4049.        20.7 2012-01-01 TRUE   
+#&gt;  3 2012-01-01 01:00:00  3878.        20.6 2012-01-01 TRUE   
+#&gt;  4 2012-01-01 01:30:00  4036.        20.4 2012-01-01 TRUE   
+#&gt;  5 2012-01-01 02:00:00  3866.        20.2 2012-01-01 TRUE   
+#&gt;  6 2012-01-01 02:30:00  3694.        20.1 2012-01-01 TRUE   
+#&gt;  7 2012-01-01 03:00:00  3562.        19.6 2012-01-01 TRUE   
+#&gt;  8 2012-01-01 03:30:00  3433.        19.1 2012-01-01 TRUE   
+#&gt;  9 2012-01-01 04:00:00  3359.        19.0 2012-01-01 TRUE   
+#&gt; 10 2012-01-01 04:30:00  3331.        18.8 2012-01-01 TRUE   
+#&gt; # … with 52,598 more rows</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

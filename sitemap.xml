@@ -10,9 +10,6 @@
     <loc>https://tsibbledata.tidyverts.org/reference/ansett.html</loc>
   </url>
   <url>
-    <loc>https://tsibbledata.tidyverts.org/reference/aus_elec.html</loc>
-  </url>
-  <url>
     <loc>https://tsibbledata.tidyverts.org/reference/aus_livestock.html</loc>
   </url>
   <url>
@@ -41,5 +38,8 @@
   </url>
   <url>
     <loc>https://tsibbledata.tidyverts.org/reference/tsibbledata-package.html</loc>
+  </url>
+  <url>
+    <loc>https://tsibbledata.tidyverts.org/reference/vic_elec.html</loc>
   </url>
 </urlset>
