@@ -8,4 +8,14 @@
 0 errors | 0 warnings | 1 note
 
 * This is a new release.
-* The title 'Diverse Datasets for tsibble' does not use title case for tsibble as it is a package.
+
+## Resubmission
+
+This is a resubmission. In this version I have:
+
+* Wrapped the tsibble package name in single quotes.
+* Updated package description to be more informative.
+
+> Where do you get these datasets?
+
+The source of these datasets are listed in their documentation.
