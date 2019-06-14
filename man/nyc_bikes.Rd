@@ -5,7 +5,7 @@
 \title{NYC Citi Bike trips}
 \format{Time series of class \code{tsibble}}
 \source{
-Citi Bike NYC, https://www.citibikenyc.com/system-data
+Citi Bike NYC, \url{https://www.citibikenyc.com/system-data}
 }
 \description{
 A sample from NYC Citi Bike usage of 10 bikes throughout 2018. The data
@@ -14,13 +14,13 @@ and locations. The customer's gender, birth year and bike usage type is
 also available.
 }
 \details{
-\code{nyc_bikes} is a tsibble containing event data, the events include
+\code{nyc_bikes} is a \code{tsibble} containing event data, the events include
 these details:
 \tabular{ll}{
 start_time:   \tab The time and date when the trip was started.\cr
 stop_time:    \tab The time and date when the trip was ended.\cr
 start_station:\tab A unique identifier for the starting bike station.\cr
-start_lat:    \tab The latitutde of the starting bike station.\cr
+start_lat:    \tab The latitude of the starting bike station.\cr
 start_long:   \tab The longitude of the starting bike station.\cr
 end_station:  \tab A unique identifier for the destination bike station.\cr
 end_lat:      \tab The latitutde of the destination bike station.\cr

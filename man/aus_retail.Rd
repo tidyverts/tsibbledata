@@ -8,7 +8,7 @@
 Australian Bureau of Statistics, catalogue number 8501.0, table 11.
 }
 \description{
-\code{aus_retail} is a monthly tsibble with one value:
+\code{aus_retail} is a monthly \code{tsibble} with one value:
 \tabular{ll}{
 Turnover:      \tab Retail turnover in $Million AUD\cr
 }

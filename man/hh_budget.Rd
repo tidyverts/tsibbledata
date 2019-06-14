@@ -6,17 +6,17 @@
 \title{Household budget characteristics}
 \format{Time series of class \code{tsibble}.}
 \source{
-The Organisation for Economic Co-operation and Development (https://data.oecd.org/)
+The Organisation for Economic Co-operation and Development (\url{https://data.oecd.org/})
 }
 \description{
 Annual indicators of household budgets for Australia, Japan, Canada and USA
 from 1995-2016.
 }
 \details{
-\code{hh_budget} is an annual tsibble with six values:
+\code{hh_budget} is an annual \code{tsibble} with six values:
 \tabular{ll}{
 Debt:         \tab Debt as a percentage of net disposable income.\cr
-DI:           \tab Annual growth rate of disposible income.\cr
+DI:           \tab Annual growth rate of disposable income.\cr
 Expenditure:  \tab Annual growth rate of expenditure.\cr
 Savings:      \tab Savings as a percentage of household disposable income.\cr
 Wealth:       \tab Wealth as a percentage of net disposable income.\cr

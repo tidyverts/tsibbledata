@@ -11,7 +11,7 @@ Australian Bureau of Statistics, catalogue number 7218.0.55.001 tables 1 to 6.
 Meat production in Australia for human consumption from Q3 1965 to Q4 2018.
 }
 \details{
-\code{aus_livestock} is an quarterly tsibble with one value:
+\code{aus_livestock} is an quarterly \code{tsibble} with one value:
 \tabular{ll}{
 Count:    \tab Number of animals slaughtered.\cr
 }

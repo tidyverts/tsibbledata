@@ -12,7 +12,7 @@ Hudson Bay Company trading records for Snowshoe Hare and Canadian Lynx furs
 from 1845 to 1935. This data contains trade records for all areas of the company.
 }
 \details{
-\code{pelt} is an annual tsibble with two values:
+\code{pelt} is an annual \code{tsibble} with two values:
 \tabular{ll}{
 Hare:      \tab The number of Snowshoe Hare pelts traded.\cr
 Lynx:      \tab The number of Canadian Lynx pelts traded.\cr

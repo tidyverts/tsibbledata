@@ -5,13 +5,13 @@
 \title{Global economic indicators}
 \format{Time series of class \code{tsibble}}
 \source{
-The World Bank, http://datatopics.worldbank.org/world-development-indicators/
+The World Bank, \url{http://datatopics.worldbank.org/world-development-indicators/}
 }
 \description{
 Economic indicators featured by the World Bank from 1960 to 2017.
 }
 \details{
-\code{global_economy} is an annual tsibble with two values:
+\code{global_economy} is an annual \code{tsibble} with two values:
 \tabular{ll}{
 GDP:       \tab Gross domestic product (in $USD February 2019).\cr
 Growth:    \tab Annual percentage growth in GDP.\cr

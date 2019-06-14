@@ -8,7 +8,7 @@
 Medicare Australia
 }
 \description{
-\code{PBS} is a monthly tsibble with two values:
+\code{PBS} is a monthly \code{tsibble} with two values:
 \tabular{ll}{
 Scripts:      \tab Total number of scripts\cr
 Cost:     \tab Cost of the scripts in $AUD\cr

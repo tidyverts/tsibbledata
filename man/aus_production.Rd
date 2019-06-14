@@ -12,7 +12,7 @@ Australian Bureau of Statistics, catalogue number 8301.0.55.001 table 1.
 Quarterly estimates of selected indicators of manufacturing production in Australia.
 }
 \details{
-\code{aus_production} is a half-hourly tsibble with six values:
+\code{aus_production} is a half-hourly \code{tsibble} with six values:
 \tabular{ll}{
 Beer:       \tab Beer production in megalitres.\cr
 Tobacco:    \tab Tobacco and cigarette production in tonnes.\cr

@@ -1,6 +1,6 @@
 #' Monthly Medicare Australia prescription data
 #'
-#' \code{PBS} is a monthly tsibble with two values:
+#' \code{PBS} is a monthly `tsibble` with two values:
 #' \tabular{ll}{
 #'     Scripts:      \tab Total number of scripts\cr
 #'     Cost:     \tab Cost of the scripts in $AUD\cr
@@ -28,7 +28,7 @@ NULL
 
 #' Fastest running times for Olympic races
 #'
-#' \code{olympic_running} is a quadrennial tsibble with one value:
+#' \code{olympic_running} is a quadrennial `tsibble` with one value:
 #' \tabular{ll}{
 #'     Time:      \tab Fastest running time for the event\cr
 #' }
@@ -42,7 +42,7 @@ NULL
 #' The data contains missing values in 1916, 1940 and 1944 due to the World Wars.
 #'
 #' @source
-#' https://www.olympic.org/athletics
+#' <https://www.olympic.org/athletics>
 #'
 #' @name olympic_running
 #' @format Time series of class `tsibble`
@@ -58,7 +58,7 @@ NULL
 
 #' Australian retail trade turnover
 #'
-#' \code{aus_retail} is a monthly tsibble with one value:
+#' \code{aus_retail} is a monthly `tsibble` with one value:
 #' \tabular{ll}{
 #'     Turnover:      \tab Retail turnover in $Million AUD\cr
 #' }
@@ -83,7 +83,7 @@ NULL
 #' weeks having zero passengers. There were also at least two changes in the
 #' definitions of passenger classes.
 #'
-#' \code{ansett} is a weekly tsibble with one value:
+#' \code{ansett} is a weekly `tsibble` with one value:
 #' \tabular{ll}{
 #'     Passengers:  \tab Total air passengers travelling with Ansett\cr
 #' }
@@ -110,13 +110,13 @@ NULL
 #' and locations. The customer's gender, birth year and bike usage type is
 #' also available.
 #'
-#' \code{nyc_bikes} is a tsibble containing event data, the events include
+#' \code{nyc_bikes} is a `tsibble` containing event data, the events include
 #' these details:
 #' \tabular{ll}{
 #'     start_time:   \tab The time and date when the trip was started.\cr
 #'     stop_time:    \tab The time and date when the trip was ended.\cr
 #'     start_station:\tab A unique identifier for the starting bike station.\cr
-#'     start_lat:    \tab The latitutde of the starting bike station.\cr
+#'     start_lat:    \tab The latitude of the starting bike station.\cr
 #'     start_long:   \tab The longitude of the starting bike station.\cr
 #'     end_station:  \tab A unique identifier for the destination bike station.\cr
 #'     end_lat:      \tab The latitutde of the destination bike station.\cr
@@ -132,7 +132,7 @@ NULL
 #' }
 #'
 #' @source
-#' Citi Bike NYC, https://www.citibikenyc.com/system-data
+#' Citi Bike NYC, <https://www.citibikenyc.com/system-data>
 #'
 #' @name nyc_bikes
 #' @format Time series of class `tsibble`
@@ -144,7 +144,7 @@ NULL
 #' Historical stock prices from 2014-2018 for Google, Amazon, Facebook and Apple.
 #' All prices are in $USD.
 #'
-#' \code{gafa_stock} is a tsibble containing data on irregular trading days:
+#' \code{gafa_stock} is a `tsibble` containing data on irregular trading days:
 #' \tabular{ll}{
 #'     Open:      \tab The opening price for the stock.\cr
 #'     High:      \tab The stock's highest trading price.\cr
@@ -160,7 +160,7 @@ NULL
 #' }
 #'
 #' @source
-#' Yahoo Finance historical data, https://finance.yahoo.com/
+#' Yahoo Finance historical data, <https://finance.yahoo.com/>
 #'
 #' @name gafa_stock
 #' @format Time series of class `tsibble`
@@ -173,7 +173,7 @@ NULL
 #' Hudson Bay Company trading records for Snowshoe Hare and Canadian Lynx furs
 #' from 1845 to 1935. This data contains trade records for all areas of the company.
 #'
-#' \code{pelt} is an annual tsibble with two values:
+#' \code{pelt} is an annual `tsibble` with two values:
 #' \tabular{ll}{
 #'     Hare:      \tab The number of Snowshoe Hare pelts traded.\cr
 #'     Lynx:      \tab The number of Canadian Lynx pelts traded.\cr
@@ -192,7 +192,7 @@ NULL
 #'
 #' Economic indicators featured by the World Bank from 1960 to 2017.
 #'
-#' \code{global_economy} is an annual tsibble with two values:
+#' \code{global_economy} is an annual `tsibble` with two values:
 #' \tabular{ll}{
 #'     GDP:       \tab Gross domestic product (in $USD February 2019).\cr
 #'     Growth:    \tab Annual percentage growth in GDP.\cr
@@ -208,7 +208,7 @@ NULL
 #' }
 #'
 #' @source
-#' The World Bank, http://datatopics.worldbank.org/world-development-indicators/
+#' The World Bank, <http://datatopics.worldbank.org/world-development-indicators/>
 #'
 #' @name global_economy
 #' @format Time series of class `tsibble`
@@ -219,7 +219,7 @@ NULL
 #'
 #' Meat production in Australia for human consumption from Q3 1965 to Q4 2018.
 #'
-#' \code{aus_livestock} is an quarterly tsibble with one value:
+#' \code{aus_livestock} is an quarterly `tsibble` with one value:
 #' \tabular{ll}{
 #'     Count:    \tab Number of animals slaughtered.\cr
 #' }
@@ -239,7 +239,7 @@ NULL
 
 #' Half-hourly electricity demand for Victoria, Australia
 #'
-#' \code{vic_elec} is a half-hourly tsibble with three values:
+#' \code{vic_elec} is a half-hourly `tsibble` with three values:
 #'   \tabular{ll}{
 #'     Demand:      \tab Total electricity demand in MW.\cr
 #'     Temperature: \tab Temperature of Melbourne (BOM site 086071).\cr
@@ -258,7 +258,7 @@ NULL
 #'
 #' @name vic_elec
 #' @docType data
-#' @format Time series of class \code{tsibble}.
+#' @format Time series of class `tsibble`.
 #'
 #' @source
 #' Australian Energy Market Operator.
@@ -274,7 +274,7 @@ NULL
 #'
 #' Quarterly estimates of selected indicators of manufacturing production in Australia.
 #'
-#' \code{aus_production} is a half-hourly tsibble with six values:
+#' \code{aus_production} is a half-hourly `tsibble` with six values:
 #'   \tabular{ll}{
 #'     Beer:       \tab Beer production in megalitres.\cr
 #'     Tobacco:    \tab Tobacco and cigarette production in tonnes.\cr
@@ -286,7 +286,7 @@ NULL
 #'
 #' @name aus_production
 #' @docType data
-#' @format Time series of class \code{tsibble}.
+#' @format Time series of class `tsibble`.
 #' @source
 #' Australian Bureau of Statistics, catalogue number 8301.0.55.001 table 1.
 #'
@@ -302,10 +302,10 @@ NULL
 #' Annual indicators of household budgets for Australia, Japan, Canada and USA
 #' from 1995-2016.
 #'
-#' \code{hh_budget} is an annual tsibble with six values:
+#' \code{hh_budget} is an annual `tsibble` with six values:
 #'   \tabular{ll}{
 #'     Debt:         \tab Debt as a percentage of net disposable income.\cr
-#'     DI:           \tab Annual growth rate of disposible income.\cr
+#'     DI:           \tab Annual growth rate of disposable income.\cr
 #'     Expenditure:  \tab Annual growth rate of expenditure.\cr
 #'     Savings:      \tab Savings as a percentage of household disposable income.\cr
 #'     Wealth:       \tab Wealth as a percentage of net disposable income.\cr
@@ -319,9 +319,9 @@ NULL
 #'
 #' @name hh_budget
 #' @docType data
-#' @format Time series of class \code{tsibble}.
+#' @format Time series of class `tsibble`.
 #' @source
-#' The Organisation for Economic Co-operation and Development (https://data.oecd.org/)
+#' The Organisation for Economic Co-operation and Development (<https://data.oecd.org/>)
 #'
 #' @keywords datasets
 #' @examples

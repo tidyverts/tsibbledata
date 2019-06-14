@@ -5,10 +5,10 @@
 \title{Fastest running times for Olympic races}
 \format{Time series of class \code{tsibble}}
 \source{
-https://www.olympic.org/athletics
+\url{https://www.olympic.org/athletics}
 }
 \description{
-\code{olympic_running} is a quadrennial tsibble with one value:
+\code{olympic_running} is a quadrennial \code{tsibble} with one value:
 \tabular{ll}{
 Time:      \tab Fastest running time for the event\cr
 }

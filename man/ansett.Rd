@@ -13,7 +13,7 @@ weeks having zero passengers. There were also at least two changes in the
 definitions of passenger classes.
 }
 \details{
-\code{ansett} is a weekly tsibble with one value:
+\code{ansett} is a weekly \code{tsibble} with one value:
 \tabular{ll}{
 Passengers:  \tab Total air passengers travelling with Ansett\cr
 }
