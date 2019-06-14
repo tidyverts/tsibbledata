@@ -4,16 +4,16 @@
 \name{tsibbledata-package}
 \alias{tsibbledata}
 \alias{tsibbledata-package}
-\title{tsibbledata: Diverse Datasets for tsibble}
+\title{tsibbledata: Diverse Datasets for 'tsibble'}
 \description{
 \if{html}{\figure{logo.png}{options: align='right'}}
 
-This data package provides diverse datasets in the tsibble data structure. These datasets are useful for learning how tsibble can be applied on a variety of time series tasks.
+Provides diverse datasets in the 'tsibble' data structure. These datasets are useful for learning and demonstrating how tidy temporal data can tidied, visualised, and forecasted.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/tidyverts/tsibbledata}
+  \item \url{http://tsibbledata.tidyverts.org/}
   \item Report bugs at \url{https://github.com/tidyverts/tsibbledata/issues}
 }
 

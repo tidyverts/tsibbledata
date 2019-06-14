@@ -4,6 +4,9 @@
 \alias{PBS}
 \title{Monthly Medicare Australia prescription data}
 \format{Time series of class \code{tsibble}}
+\source{
+Medicare Australia
+}
 \description{
 \code{PBS} is a monthly tsibble with two values:
 \tabular{ll}{

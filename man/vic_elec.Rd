@@ -12,7 +12,7 @@ Australian Energy Market Operator.
 \code{vic_elec} is a half-hourly tsibble with three values:
 \tabular{ll}{
 Demand:      \tab Total electricity demand in MW.\cr
-Temperature: \tab Temperature from the state's major city.\cr
+Temperature: \tab Temperature of Melbourne (BOM site 086071).\cr
 Holiday:     \tab Indicator for if that day is a public holiday.\cr
 }
 }

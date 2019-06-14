@@ -4,6 +4,9 @@
 \alias{pelt}
 \title{Pelt trading records}
 \format{Time series of class \code{tsibble}}
+\source{
+Hudson Bay Company
+}
 \description{
 Hudson Bay Company trading records for Snowshoe Hare and Canadian Lynx furs
 from 1845 to 1935. This data contains trade records for all areas of the company.
