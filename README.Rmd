@@ -20,12 +20,19 @@ This package provides examples of [tsibble](https://tsibble.tidyverts.org/) data
 
 ## Installation
 
-You can install the development version from [GitHub](https://github.com/) with:
+You could install the stable version on [CRAN](https://cran.r-project.org/package=tsibbledata):
 
-``` r
-# install.packages("devtools")
-devtools::install_github("tidyverts/tsibbledata")
+```{r, eval = FALSE}
+install.packages("tsibbledata")
 ```
+
+You could install the development version from [GitHub](https://github.com/) using
+
+```{r, eval = FALSE}
+# install.packages("remotes")
+remotes::install_github("tidyverts/tsibbledata")
+```
+
 ## Example
 
 ```{r elecdemand, message = FALSE, warning = FALSE}

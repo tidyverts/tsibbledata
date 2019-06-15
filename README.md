@@ -13,12 +13,19 @@ within the [tidyverts](https://tidyverts.org/) family of packages.
 
 ## Installation
 
-You can install the development version from
-[GitHub](https://github.com/) with:
+You could install the stable version on
+[CRAN](https://cran.r-project.org/package=tsibbledata):
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("tidyverts/tsibbledata")
+install.packages("tsibbledata")
+```
+
+You could install the development version from
+[GitHub](https://github.com/) using
+
+``` r
+# install.packages("remotes")
+remotes::install_github("tidyverts/tsibbledata")
 ```
 
 ## Example
