@@ -30,12 +30,12 @@ NULL
 #'
 #' \code{olympic_running} is a quadrennial `tsibble` with one value:
 #' \tabular{ll}{
-#'     Time:      \tab Fastest running time for the event\cr
+#'     Time:      \tab Fastest running time for the event (seconds)\cr
 #' }
 #'
 #' The event is identified using two keys:
 #' \tabular{ll}{
-#'     Length:     \tab The length of the race\cr
+#'     Length:     \tab The length of the race (meters)\cr
 #'     Sex:     \tab The sex of the event\cr
 #' }
 #'

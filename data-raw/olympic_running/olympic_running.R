@@ -44,14 +44,13 @@ parse_athletics <- function(event){
 }
 
 olympic_running <- map_dfr(events, parse_athletics) %>%
-  separate(path, c("Length", "Sex")) %>%
+  separate(path, c("Length", "Sex"), sep = "m-") %>%
   select(Year, Length, Sex, Medal, Time) %>%
-  group_by(Year, Length, Sex) %>%
+  group_by(Year = as.integer(Year), Length = as.integer(Length), Sex) %>%
   summarise(Time = min(Time, na.rm = TRUE)) %>%
   ungroup %>%
   arrange(Year, Length) %>%
-  mutate(Length = fct_relevel(Length, lengths)) %>%
   as_tsibble(key = c(Length, Sex), index = Year) %>%
-  fill_na()
+  fill_gaps()
 
 usethis::use_data(olympic_running, overwrite=TRUE)
