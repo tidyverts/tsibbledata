@@ -41,7 +41,7 @@
 
 <meta property="og:description" content="olympic_running is a quadrennial tsibble with one value:
 Time:
-Fastest running time for the event
+Fastest running time for the event (seconds)
 " />
 
 <meta property="og:image" content="https://tsibbledata.tidyverts.org/logo.png" />
@@ -117,7 +117,7 @@ Fastest running time for the event
     
     <p><code>olympic_running</code> is a quadrennial <code>tsibble</code> with one value:</p><table class='table'>
 <tr><td></td><td>Time:</td></tr>
-<tr><td>Fastest running time for the event</td><td></td></tr>
+<tr><td>Fastest running time for the event (seconds)</td><td></td></tr>
 </table>
     
     </div>
@@ -135,7 +135,7 @@ Fastest running time for the event
 
     <p>The event is identified using two keys:</p><table class='table'>
 <tr><td></td><td>Length:</td></tr>
-<tr><td>The length of the race</td><td></td></tr>
+<tr><td>The length of the race (meters)</td><td></td></tr>
 <tr><td>Sex:</td><td>The sex of the event</td></tr>
 <tr><td></td><td></td></tr>
 </table>
@@ -143,15 +143,12 @@ Fastest running time for the event
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)</div><div class='output co'>#&gt; <span class='message'>Registered S3 methods overwritten by 'ggplot2':</span>
-#&gt; <span class='message'>  method         from </span>
-#&gt; <span class='message'>  [.quosures     rlang</span>
-#&gt; <span class='message'>  c.quosures     rlang</span>
-#&gt; <span class='message'>  print.quosures rlang</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>tsibble</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>tsibble</span>)
 <span class='no'>olympic_running</span> <span class='kw'>%&gt;%</span> <span class='no'>as_tibble</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>Year</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Time</span>, <span class='kw'>colour</span> <span class='kw'>=</span> <span class='no'>Sex</span>)) +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_path'>geom_line</a></span>() +
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap'>facet_wrap</a></span>(~ <span class='no'>Length</span>, <span class='kw'>scales</span> <span class='kw'>=</span> <span class='st'>"free_y"</span>)</div><div class='img'><img src='olympic_running-1.png' alt='' width='700' height='433' /></div></pre>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>Year</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>Time</span>, <span class='kw'>colour</span> <span class='kw'>=</span> <span class='no'>Sex</span>)) +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>() +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span>(~ <span class='no'>Length</span>, <span class='kw'>scales</span> <span class='kw'>=</span> <span class='st'>"free_y"</span>)</div><div class='img'><img src='olympic_running-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
