@@ -192,7 +192,7 @@ NULL
 #'
 #' Economic indicators featured by the World Bank from 1960 to 2017.
 #'
-#' \code{global_economy} is an annual `tsibble` with two values:
+#' \code{global_economy} is an annual `tsibble` with six values:
 #' \tabular{ll}{
 #'     GDP:       \tab Gross domestic product (in $USD February 2019).\cr
 #'     Growth:    \tab Annual percentage growth in GDP.\cr
