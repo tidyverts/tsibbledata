@@ -2,7 +2,7 @@ library(tidyverse)
 library(lubridate)
 library(tsibble)
 
-holidays <- list.files("data-raw/aus_elec", pattern = "holidays.txt",
+holidays <- list.files("data-raw/vic_elec", pattern = "holidays.txt",
            recursive = TRUE, full.names = TRUE) %>%
   set_names(basename(dirname(.))) %>%
   map_dfr(read_csv, col_names = FALSE, .id = "State") %>%
@@ -10,12 +10,12 @@ holidays <- list.files("data-raw/aus_elec", pattern = "holidays.txt",
 
 
 # TAS:Hobart, VIC:Melbourne, QLD:Brisbane, NSW:Sydney, SA:Adelaide
-temperatures <- list.files("data-raw/aus_elec", pattern = "temperature.csv",
+temperatures <- list.files("data-raw/vic_elec", pattern = "temperature.csv",
                            recursive = TRUE, full.names = TRUE) %>%
   set_names(basename(dirname(.))) %>%
   map_dfr(read_csv, .id = "State")
 
-demands <- list.files("data-raw/aus_elec", pattern = "demand.csv",
+demands <- list.files("data-raw/vic_elec", pattern = "demand.csv",
                        recursive = TRUE, full.names = TRUE) %>%
   set_names(basename(dirname(.))) %>%
   map_dfr(read_csv, .id = "State")
