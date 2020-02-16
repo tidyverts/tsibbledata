@@ -197,8 +197,8 @@ NULL
 #'     GDP:       \tab Gross domestic product (in $USD February 2019).\cr
 #'     Growth:    \tab Annual percentage growth in GDP.\cr
 #'     CPI:       \tab Consumer price index (base year 2010).\cr
-#'     Imports:   \tab Imports of goods and services (\% of GDP).\cr
-#'     Exports:   \tab Exports of goods and services (\% of GDP).\cr
+#'     Imports:   \tab Imports of goods and services (% of GDP).\cr
+#'     Exports:   \tab Exports of goods and services (% of GDP).\cr
 #'     Population:\tab Total population.
 #' }
 #'
