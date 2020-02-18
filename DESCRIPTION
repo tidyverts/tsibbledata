@@ -13,6 +13,8 @@ Imports:
     tsibble (>= 0.8.9.9000)
 Suggests:
     ggplot2
+Remotes:
+    tidyverts/tsibble
 ByteCompile: true
 License: GPL-3
 URL: http://tsibbledata.tidyverts.org/, https://github.com/tidyverts/tsibbledata/
