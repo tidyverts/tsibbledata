@@ -1,5 +1,7 @@
 # tsibbledata (development version)
 
+* Changed times of `vic_elec` back 30 minutes for consistency with `fpp2::elecdemand`.
+
 # tsibbledata 0.1.0 (12th June 2019)
 
 * First release.
