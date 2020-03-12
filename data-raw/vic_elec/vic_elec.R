@@ -24,7 +24,7 @@ vic_elec <- demands %>%
   left_join(temperatures, by = c("State", "Date", "Period")) %>%
   transmute(
     State,
-    Time = as.POSIXct(as_date(Date, origin = ymd("1899-12-30")) + minutes((Period - 1) * 30)),
+    Time = as.POSIXct(as_date(Date, origin = ymd("1899-12-30")) + minutes((Period - 1) * 30), tz = "Australia/Melbourne"),
     Demand = OperationalLessIndustrial, #+ Industrial,
     Temperature = Temp,
     Date = as_date(Time)
