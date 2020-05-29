@@ -48,12 +48,14 @@ NULL
 #' @format Time series of class `tsibble`
 #' @keywords datasets
 #' @examples
+#' if(requireNamespace("ggplot2") && requireNamespace("tsibble")){
 #' library(ggplot2)
 #' library(tsibble)
 #' olympic_running %>% as_tibble %>%
 #'   ggplot(aes(x=Year, y = Time, colour = Sex)) +
 #'   geom_line() +
 #'   facet_wrap(~ Length, scales = "free_y")
+#' }
 NULL
 
 #' Australian retail trade turnover
