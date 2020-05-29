@@ -3,7 +3,9 @@
 \name{ansett}
 \alias{ansett}
 \title{Passenger numbers on Ansett airline flights}
-\format{Time series of class \code{tsibble}}
+\format{
+Time series of class \code{tsibble}
+}
 \source{
 Ansett Airlines (which no longer exists).
 }

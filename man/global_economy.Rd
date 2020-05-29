@@ -3,7 +3,9 @@
 \name{global_economy}
 \alias{global_economy}
 \title{Global economic indicators}
-\format{Time series of class \code{tsibble}}
+\format{
+Time series of class \code{tsibble}
+}
 \source{
 The World Bank, \url{http://datatopics.worldbank.org/world-development-indicators/}
 }

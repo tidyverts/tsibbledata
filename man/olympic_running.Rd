@@ -3,7 +3,9 @@
 \name{olympic_running}
 \alias{olympic_running}
 \title{Fastest running times for Olympic races}
-\format{Time series of class \code{tsibble}}
+\format{
+Time series of class \code{tsibble}
+}
 \source{
 \url{https://www.olympic.org/athletics}
 }

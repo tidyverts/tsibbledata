@@ -3,7 +3,9 @@
 \name{aus_livestock}
 \alias{aus_livestock}
 \title{Australian livestock slaughter}
-\format{Time series of class \code{tsibble}}
+\format{
+Time series of class \code{tsibble}
+}
 \source{
 Australian Bureau of Statistics, catalogue number 7218.0.55.001 tables 1 to 6.
 }

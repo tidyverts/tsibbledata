@@ -3,7 +3,9 @@
 \name{nyc_bikes}
 \alias{nyc_bikes}
 \title{NYC Citi Bike trips}
-\format{Time series of class \code{tsibble}}
+\format{
+Time series of class \code{tsibble}
+}
 \source{
 Citi Bike NYC, \url{https://www.citibikenyc.com/system-data}
 }

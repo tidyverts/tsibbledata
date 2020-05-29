@@ -3,7 +3,9 @@
 \name{pelt}
 \alias{pelt}
 \title{Pelt trading records}
-\format{Time series of class \code{tsibble}}
+\format{
+Time series of class \code{tsibble}
+}
 \source{
 Hudson Bay Company
 }

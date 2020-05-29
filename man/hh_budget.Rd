@@ -4,7 +4,9 @@
 \name{hh_budget}
 \alias{hh_budget}
 \title{Household budget characteristics}
-\format{Time series of class \code{tsibble}.}
+\format{
+Time series of class \code{tsibble}.
+}
 \source{
 The Organisation for Economic Co-operation and Development (\url{https://data.oecd.org/})
 }

@@ -4,7 +4,9 @@
 \name{vic_elec}
 \alias{vic_elec}
 \title{Half-hourly electricity demand for Victoria, Australia}
-\format{Time series of class \code{tsibble}.}
+\format{
+Time series of class \code{tsibble}.
+}
 \source{
 Australian Energy Market Operator.
 }

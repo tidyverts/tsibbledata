@@ -3,7 +3,9 @@
 \name{gafa_stock}
 \alias{gafa_stock}
 \title{GAFA stock prices}
-\format{Time series of class \code{tsibble}}
+\format{
+Time series of class \code{tsibble}
+}
 \source{
 Yahoo Finance historical data, \url{https://finance.yahoo.com/}
 }

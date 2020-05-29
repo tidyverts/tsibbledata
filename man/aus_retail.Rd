@@ -3,7 +3,9 @@
 \name{aus_retail}
 \alias{aus_retail}
 \title{Australian retail trade turnover}
-\format{Time series of class \code{tsibble}}
+\format{
+Time series of class \code{tsibble}
+}
 \source{
 Australian Bureau of Statistics, catalogue number 8501.0, table 11.
 }

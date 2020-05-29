@@ -4,7 +4,9 @@
 \name{aus_production}
 \alias{aus_production}
 \title{Quarterly production of selected commodities in Australia.}
-\format{Time series of class \code{tsibble}.}
+\format{
+Time series of class \code{tsibble}.
+}
 \source{
 Australian Bureau of Statistics, catalogue number 8301.0.55.001 table 1.
 }
