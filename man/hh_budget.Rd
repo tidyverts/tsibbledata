@@ -31,7 +31,7 @@ Country:   \tab The country of the series.\cr
 }
 }
 \examples{
-
+library(tsibble)
 hh_budget
 
 }

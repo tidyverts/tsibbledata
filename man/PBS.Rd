@@ -26,7 +26,7 @@ ATC2:     \tab Anatomical Therapeutic Chemical index (level 2)\cr
 }
 }
 \examples{
-
+library(tsibble)
 PBS
 
 }

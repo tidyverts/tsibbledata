@@ -37,4 +37,8 @@ Each series is uniquely identified by one key:
 bike_id:      \tab A unique identifier for the bike.\cr
 }
 }
+\examples{
+library(tsibble)
+nyc_bikes
+}
 \keyword{datasets}

@@ -22,4 +22,9 @@ State:     \tab The Australian state (or territory)\cr
 Industry:     \tab The industry of retail trade\cr
 }
 }
+\examples{
+library(tsibble)
+aus_retail
+
+}
 \keyword{datasets}

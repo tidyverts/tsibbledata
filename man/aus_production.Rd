@@ -25,7 +25,7 @@ Gas:        \tab Gas production in petajoules.\cr
 }
 }
 \examples{
-
+library(tsibble)
 aus_production
 
 }

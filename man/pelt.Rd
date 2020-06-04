@@ -20,4 +20,8 @@ Hare:      \tab The number of Snowshoe Hare pelts traded.\cr
 Lynx:      \tab The number of Canadian Lynx pelts traded.\cr
 }
 }
+\examples{
+library(tsibble)
+pelt
+}
 \keyword{datasets}

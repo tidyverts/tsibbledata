@@ -21,7 +21,7 @@
 #' @format Time series of class `tsibble`
 #' @keywords datasets
 #' @examples
-#'
+#' library(tsibble)
 #' PBS
 #'
 NULL
@@ -48,9 +48,11 @@ NULL
 #' @format Time series of class `tsibble`
 #' @keywords datasets
 #' @examples
-#' if(requireNamespace("ggplot2") && requireNamespace("tsibble")){
-#' library(ggplot2)
 #' library(tsibble)
+#' olympic_running
+#'
+#' if(requireNamespace("ggplot2")){
+#' library(ggplot2)
 #' olympic_running %>% as_tibble %>%
 #'   ggplot(aes(x=Year, y = Time, colour = Sex)) +
 #'   geom_line() +
@@ -77,6 +79,11 @@ NULL
 #' @name aus_retail
 #' @format Time series of class `tsibble`
 #' @keywords datasets
+#'
+#' @examples
+#' library(tsibble)
+#' aus_retail
+#'
 NULL
 
 #' Passenger numbers on Ansett airline flights
@@ -102,6 +109,10 @@ NULL
 #' @name ansett
 #' @format Time series of class `tsibble`
 #' @keywords datasets
+#' @examples
+#' library(tsibble)
+#' ansett
+#'
 NULL
 
 
@@ -139,6 +150,9 @@ NULL
 #' @name nyc_bikes
 #' @format Time series of class `tsibble`
 #' @keywords datasets
+#' @examples
+#' library(tsibble)
+#' nyc_bikes
 NULL
 
 #' GAFA stock prices
@@ -167,6 +181,9 @@ NULL
 #' @name gafa_stock
 #' @format Time series of class `tsibble`
 #' @keywords datasets
+#' @examples
+#' library(tsibble)
+#' gafa_stock
 NULL
 
 
@@ -187,6 +204,9 @@ NULL
 #' @name pelt
 #' @format Time series of class `tsibble`
 #' @keywords datasets
+#' @examples
+#' library(tsibble)
+#' pelt
 NULL
 
 
@@ -215,6 +235,9 @@ NULL
 #' @name global_economy
 #' @format Time series of class `tsibble`
 #' @keywords datasets
+#' @examples
+#' library(tsibble)
+#' global_economy
 NULL
 
 #' Australian livestock slaughter
@@ -237,6 +260,9 @@ NULL
 #' @name aus_livestock
 #' @format Time series of class `tsibble`
 #' @keywords datasets
+#' @examples
+#' library(tsibble)
+#' aus_livestock
 NULL
 
 #' Half-hourly electricity demand for Victoria, Australia
@@ -267,9 +293,8 @@ NULL
 #'
 #' @keywords datasets
 #' @examples
-#'
+#' library(tsibble)
 #' vic_elec
-#'
 NULL
 
 #' Quarterly production of selected commodities in Australia.
@@ -294,7 +319,7 @@ NULL
 #'
 #' @keywords datasets
 #' @examples
-#'
+#' library(tsibble)
 #' aus_production
 #'
 NULL
@@ -327,7 +352,7 @@ NULL
 #'
 #' @keywords datasets
 #' @examples
-#'
+#' library(tsibble)
 #' hh_budget
 #'
 NULL

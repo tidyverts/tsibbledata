@@ -30,8 +30,7 @@ small wind farms, etc), and demand of local scheduled loads. It also
 excludes some very large industrial users (such as mines or smelters).
 }
 \examples{
-
+library(tsibble)
 vic_elec
-
 }
 \keyword{datasets}

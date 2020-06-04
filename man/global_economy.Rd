@@ -28,4 +28,8 @@ Each series is uniquely identified by one key:
 Country:   \tab The country or region of the series.\cr
 }
 }
+\examples{
+library(tsibble)
+global_economy
+}
 \keyword{datasets}

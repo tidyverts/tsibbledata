@@ -26,4 +26,9 @@ Airports:  \tab The airports that passengers are travelling between (both direct
 Class:     \tab The class of the ticket.\cr
 }
 }
+\examples{
+library(tsibble)
+ansett
+
+}
 \keyword{datasets}

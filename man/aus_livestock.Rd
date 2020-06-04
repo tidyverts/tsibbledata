@@ -23,4 +23,8 @@ Each series is uniquely identified by one key:
 Animal:   \tab The animal slaughtered.\cr
 }
 }
+\examples{
+library(tsibble)
+aus_livestock
+}
 \keyword{datasets}

@@ -29,4 +29,8 @@ Each stock is uniquely identified by one key:
 Symbol:      \tab The ticker symbol for the stock.\cr
 }
 }
+\examples{
+library(tsibble)
+gafa_stock
+}
 \keyword{datasets}
