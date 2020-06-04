@@ -1,4 +1,4 @@
-# tsibbledata (development version)
+# tsibbledata 0.2.0
 
 * Changed times of `vic_elec` back 30 minutes for consistency with `fpp2::elecdemand`.
 * Updated data for compatibility with tsibble v0.9.0.

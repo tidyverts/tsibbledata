@@ -1,5 +1,5 @@
 Package: tsibbledata
-Version: 0.1.0.9000
+Version: 0.2.0
 Title: Diverse Datasets for 'tsibble'
 Description: Provides diverse datasets in the 'tsibble' data structure. These datasets are useful for learning and demonstrating how tidy temporal data can tidied, visualised, and forecasted.
 Authors@R: c(
