@@ -63,6 +63,7 @@ PBS <- read_csv("data-raw/PBS/PBS.csv", skip = 4) %>%
   as_tsibble( # Convert to tsibble
     key = c(Concession, Type, ATC1, ATC2),
     index = Month
-  )
+  ) %>%
+  fill_gaps(Scripts=0, Cost=0)
 
 usethis::use_data(PBS, overwrite=TRUE)
