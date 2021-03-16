@@ -1,5 +1,7 @@
 # tsibbledata (development version)
 
+* Documentation improvements
+
 # tsibbledata 0.3.0 (17th March 2021)
 
 * Filled gaps in PBS with zeroes.
