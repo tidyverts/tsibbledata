@@ -3,9 +3,14 @@
 
 # tsibbledata <a href='https://tsibbledata.tidyverts.org'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
 
+<!-- badges: start -->
+
 [![R build
 status](https://github.com/tidyverts/tsibbledata/workflows/R-CMD-check/badge.svg)](https://github.com/tidyverts/tsibbledata)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/tsibbledata)](https://cran.r-project.org/package=tsibbledata)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+<!-- badges: end -->
 
 This package provides examples of
 [tsibble](https://tsibble.tidyverts.org/) datasets which can be used
