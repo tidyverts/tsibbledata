@@ -1,4 +1,6 @@
-# tsibbledata 0.3.0
+# tsibbledata (development version)
+
+# tsibbledata 0.3.0 (17th March 2021)
 
 * Filled gaps in PBS with zeroes.
 * Updated `nyc_bikes` and `gafa_stock` data objects for tsibble changes. This
