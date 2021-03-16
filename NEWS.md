@@ -1,5 +1,8 @@
 # tsibbledata (development version)
 
+* Filled gaps in PBS with zeroes.
+* Updated nyc_bikes data object for tsibble changes.
+
 # tsibbledata 0.2.0 (5th June 2020)
 
 * Changed times of `vic_elec` back 30 minutes for consistency with `fpp2::elecdemand`.
