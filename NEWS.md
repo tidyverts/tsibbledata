@@ -1,7 +1,8 @@
-# tsibbledata (development version)
+# tsibbledata 0.3.0
 
 * Filled gaps in PBS with zeroes.
-* Updated nyc_bikes data object for tsibble changes.
+* Updated `nyc_bikes` and `gafa_stock` data objects for tsibble changes. This
+  fixes the interval not being displayed as 'irregular'.
 
 # tsibbledata 0.2.0 (5th June 2020)
 
