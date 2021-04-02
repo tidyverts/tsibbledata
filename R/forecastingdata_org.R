@@ -322,7 +322,8 @@ get_forecastingdata <- function(dataset, destination_folder = '', index = NULL, 
       electricity_weekly,4656141,electricity_weekly_dataset
       pedestrians,4656626,pedestrian_counts_dataset
       kdd,4656719,kdd_cup_2018_dataset_with_missing_values
-      kdd_without_missing,4656756,kdd_cup_2018_dataset_without_missing_values"
+      kdd_without_missing,4656756,kdd_cup_2018_dataset_without_missing_values
+      aus_elecdemand,4659727,australian_electricity_demand_dataset"
   )
   
   if(dataset %in% forecastingdata$prefix){
