@@ -1,8 +1,8 @@
 ## Functions to download data files from Monash Time Series Forecasting Archive, https://zenodo.org/communities/forecasting
-## Fore more details, please visit to https://forecastingdata.org/
+## For more details, please visit to https://forecastingdata.org/
 
 
-#' convert_tsf_to_tsibble function
+#' Convert .tsf data into tsibble format
 #'
 #' This function converts the contents in a .tsf file into a tsibble or a data.frame and returns it along with other meta-data of the dataset: frequency, horizon, whether the dataset contains missing values and whether the series have equal lengths.
 #' For more details, please refer to our paper: Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
@@ -20,16 +20,13 @@
 #' 
 #' Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
 #' 
-#' @export
 convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", key = NULL, index = NULL){
-  options(pillar.sigfig = 7)
-  
   
   # Extend these frequency lists as required
-  LOW_FREQUENCIES <- c("4_seconds", "minutely", "10_minutes", "half_hourly", "hourly")
-  LOW_FREQ_VALS <- c("4 sec", "1 min", "10 min", "30 min", "1 hour")
-  HIGH_FREQUENCIES <- c("daily", "weekly", "monthly", "quarterly", "yearly")
-  HIGH_FREQ_VALS <- c("1 day", "1 week", "1 month", "3 months", "1 year")
+  LOW_FREQUENCIES <- c("daily", "weekly", "monthly", "quarterly", "yearly")
+  LOW_FREQ_VALS <- c("1 day", "1 week", "1 month", "3 months", "1 year")
+  HIGH_FREQUENCIES <- c("4_seconds", "minutely", "10_minutes", "half_hourly", "hourly")
+  HIGH_FREQ_VALS <- c("4 sec", "1 min", "10 min", "30 min", "1 hour")
   FREQUENCIES <- c(LOW_FREQUENCIES, HIGH_FREQUENCIES)
   FREQ_VALS <- c(LOW_FREQ_VALS, HIGH_FREQ_VALS)
   
@@ -107,9 +104,11 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
   if(length(line) == 0)
     stop("Missing series information under data section.")
   
-  for(col in col_names)
-    assign(col, NULL)
+  att_list <- list()
   
+  for(col in col_names)
+    att_list[[col]] <- NULL
+    
   values <- NULL
   row_count <- 0
   
@@ -124,26 +123,26 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
     series[which(series == "?")] <- NA
     series <- as.numeric(series)
     
-    if(sum(is.na(series)) == length(series))
+    if(all(is.na(series)))
       stop("All series values are missing. A given series should contains a set of comma separated numeric values. At least one numeric value should be there in a series.")
     
     values <- c(values, series)
     row_count <- row_count + length(series)
     
-    attributes <- head(full_info, length(full_info)-1)
+    attributes <- full_info[-length(full_info)]
     
     for(col in seq_along(col_names)){
       
-      att <- eval(parse(text=col_names[col]))
+      att <- att_list[[col_names[col]]]
       
       # This format supports 3 attribute types: string, numeric and date
       if(col_types[col] == "date"){
         if(is.null(frequency))
           stop("Frequency is missing.")
         else{
-          if(frequency %in% LOW_FREQUENCIES)
+          if(frequency %in% HIGH_FREQUENCIES)
             start_time <- as.POSIXct(attributes[col], format = "%Y-%m-%d %H-%M-%S")
-          else if(frequency %in% HIGH_FREQUENCIES)
+          else if(frequency %in% LOW_FREQUENCIES)
             start_time <- as.Date(attributes[col], format = "%Y-%m-%d %H-%M-%S")
           else
             stop("Invalid frequency.")
@@ -166,7 +165,8 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
         
         att <- append(att, rep(attributes[col], length(series)))
       }
-      assign(col_names[col], att)
+      
+      att_list[[col_names[col]]] <- att
     }
     
     line <- readLines(file, n = 1)
@@ -176,8 +176,8 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
   colnames(data) <- c(col_names, value_column_name)
   
   for(col in col_names)
-    data[[col]] <- eval(parse(text = col))
-  
+    data[[col]] <- att_list[[col]]
+    
   data[[value_column_name]] <- values
   
   if(!(is.null(key))){
@@ -188,12 +188,12 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
         if(is.null(index_var))
           cat("Index is not provided. No valid index found in data. Returning a data.frame.")
         else
-          data <- tsibble::build_tsibble(x = data, key = key, index = index_var, ordered = F)
+          data <- tsibble::build_tsibble(x = data, key = key, index = index_var, ordered = FALSE)
       }else{
         if(!(index %in% col_names))
           stop("Invalid index Cannot convert data into tsibble format.")
         else
-          data <- tsibble::build_tsibble(x = data, key = key, index = index, ordered = F)
+          data <- tsibble::build_tsibble(x = data, key = key, index = index, ordered = FALSE)
       }
     }
   }else{
@@ -205,13 +205,13 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
 
 
 
-#' download_data function
+#' Download data from the Monash Forecasting Repository
 #' 
-#' This function downloads a zip file from Zenodo platform given the record identifier and file name, unzip the contents and converts the unzipped .tsf file into a tsibble or a data.frame given the key and index.
+#' This function downloads a zip file from the Monash Time Series Forecasting Repository given the record identifier and file name, unzip the contents and converts the unzipped .tsf file into a tsibble or a data.frame given the key and index.
 #' For more details, please refer to our paper: Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
 #' 
-#' @param record_id Record identifier of the file that needs to be downloaded from Zenodo.
-#' @param file_name Name of the file (without extensions) that needs to be downloaded from Zenodo.
+#' @param record_id Record identifier of the file that needs to be downloaded from the Monash Time Series Forecasting Repository
+#' @param file_name Name of the file (without extensions) that needs to be downloaded from the Monash Time Series Forecasting Repository
 #' @param destination_folder Folder path where the downloaded files need to be stored. By default, it uses the R working directory to store files.
 #' @param index The name of the time attribute that should be used as the index when creating the tsibble. If doesn't provide, it tries to find a valid index within the data. If there is no valid index, then a data frame will be returned instead of a tsibble.
 #' @param key The name of the attribute that should be used as the key when creating the tsibble. The default value is "series_name" which is the key of the datasets in our repository. If doesn't provide, a data frame will be returned instead of a tsibble.
@@ -225,7 +225,6 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
 #' 
 #' Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
 #' 
-#' @export
 download_data_zenodo <- function(record_id, file_name, destination_folder = '', index = NULL, key = "series_name", value_column_name = "series_value"){
   
   if(is.null(record_id) | is.na(as.numeric(record_id)))
@@ -254,7 +253,7 @@ download_data_zenodo <- function(record_id, file_name, destination_folder = '', 
   
   
   if(!file.exists(tsf_file)){ # Check whether the required .tsf file is already there at the specified destination folder
-    if(!file.exists(dest_file)){ # Check whether the required .zip file is already there at the specified destination folder. If not download the .zip file from Zenodo
+    if(!file.exists(dest_file)){ # Check whether the required .zip file is already there at the specified destination folder. If not download the .zip file from the Monash Time Series Forecasting Repository
       tryCatch({
         download.file(paste0("https://zenodo.org/record/", record_id, "/files/", file_name, ".zip"), destfile = dest_file)
       }, error = function(e) {   
@@ -274,12 +273,12 @@ download_data_zenodo <- function(record_id, file_name, destination_folder = '', 
 
 
 
-#' get_forecastingdata function
+#' Get data from the Monash Forecasting Repository
 #' 
-#' This function downloads a zip file from Zenodo platform given the name of the dataset, unzip the contents and converts the unzipped .tsf file into a tsibble or a data.frame given the key and index.
+#' This function downloads a zip file from the Monash Time Series Forecasting Repository given the name of the dataset, unzip the contents and converts the unzipped .tsf file into a tsibble or a data.frame given the key and index.
 #' For more details, please refer to our paper: Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
 #' 
-#' @param dataset Name of the dataset that needs to be downloaded from Zenodo.
+#' @param dataset Name of the dataset that needs to be downloaded from the Monash Time Series Forecasting Repository
 #' @param destination_folder Folder path where the downloaded files need to be stored. By default, it uses the R working directory to store files.
 #' @param index The name of the time attribute that should be used as the index when creating the tsibble. If doesn't provide, it tries to find a valid index within the data. If there is no valid index, then a data frame will be returned instead of a tsibble.
 #' @param key The name of the attribute that should be used as the key when creating the tsibble. The default value is "series_name" which is the key of the datasets in our repository. If doesn't provide, a data frame will be returned instead of a tsibble.
@@ -293,7 +292,7 @@ download_data_zenodo <- function(record_id, file_name, destination_folder = '', 
 #' Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
 #' 
 #' @export
-get_forecastingdata <- function(dataset=c("nn5", "nn5_without_missing", "nn5_weekly", "m1_yearly", 
+get_monash_forecasting_data <- function(dataset=c("nn5", "nn5_without_missing", "nn5_weekly", "m1_yearly", 
                                           "m1_quarterly", "m1_monthly", "m3_yearly", "m3_quarterly", 
                                           "m3_monthly", "m3_other", "m4_yearly", "m4_quarterly", 
                                           "m4_monthly", "m4_weekly", "m4_daily", "m4_hourly", 
@@ -369,7 +368,7 @@ get_forecastingdata <- function(dataset=c("nn5", "nn5_without_missing", "nn5_wee
                                 aus_elecdemand = c("4659727", "australian_electricity_demand_dataset"),
                                 covid_mobility_with_missing = c("4663762", "covid_mobility_dataset_with_missing_values"),
                                 covid_mobility_without_missing = c("4663809", "covid_mobility_dataset_without_missing_values"),
-                                stringsAsFactors=FALSE )
+                                stringsAsFactors = FALSE )
    
   rownames(forecastingdata) <- c("record_id", "file_name")
              
