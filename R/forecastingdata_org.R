@@ -4,14 +4,15 @@
 
 #' convert_tsf_to_tsibble function
 #'
-#' This function converts the contents in a .tsf file into a tsibble or a dataframe and returns it along with other meta-data of the dataset: frequency, horizon, whether the dataset contains missing values and whether the series have equal lengths.
+#' This function converts the contents in a .tsf file into a tsibble or a data.frame and returns it along with other meta-data of the dataset: frequency, horizon, whether the dataset contains missing values and whether the series have equal lengths.
 #'
 #' @param file .tsf file path
 #' @param value_column_name Any name that is preferred to have as the name of the column containing series values in the returning tsibble.
 #' @param key The name of the attribute that should be used as the key when creating the tsibble. If doesn't provide, a data frame will be returned instead of a tsibble.
 #' @param index The name of the time attribute that should be used as the index when creating the tsibble. If doesn't provide, it will search for a valid index. When no valid index found, a data frame will be returned instead of a tsibble.
 #'
-#' @return This function returns a tsibble or a dataframe based on the validity of given key and index values.
+#' @return This function returns a tsibble or a data.frame based on the validity of given key and index values.
+#' @importFrom utils head tail
 #' @export
 convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", key = NULL, index = NULL){
   options(pillar.sigfig = 7)
@@ -176,18 +177,18 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
     else{
       if(is.null(index)){
         if(is.null(index_var))
-          cat("Index is not provided. No valid index found in data. Returning a dataframe.")
+          cat("Index is not provided. No valid index found in data. Returning a data.frame.")
         else
-          data <- tsibble:::build_tsibble(x = data, key = key, index = index_var, ordered = F)
+          data <- tsibble::build_tsibble(x = data, key = key, index = index_var, ordered = F)
       }else{
         if(!(index %in% col_names))
           stop("Invalid index Cannot convert data into tsibble format.")
         else
-          data <- tsibble:::build_tsibble(x = data, key = key, index = index, ordered = F)
+          data <- tsibble::build_tsibble(x = data, key = key, index = index, ordered = F)
       }
     }
   }else{
-    cat("Key is not provided. Returning a dataframe.")
+    cat("Key is not provided. Returning a data.frame.")
   }
   
   list(data, frequency, forecast_horizon, contain_missing_values, contain_equal_length)
@@ -197,7 +198,7 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
 
 #' download_data function
 #' 
-#' This function downloads a zip file from Zenodo platform given the record identifier and file name, unzip the contents and converts the unzipped .tsf file into a tsibble or a dataframe given the key and index.
+#' This function downloads a zip file from Zenodo platform given the record identifier and file name, unzip the contents and converts the unzipped .tsf file into a tsibble or a data.frame given the key and index.
 #' 
 #' @param record_id Record identifier of the file that needs to be downloaded from Zenodo.
 #' @param file_name Name of the file (without extensions) that needs to be downloaded from Zenodo.
@@ -206,9 +207,10 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
 #' @param key The name of the attribute that should be used as the key when creating the tsibble. The default value is "series_name" which is the key of the datasets in our repository. If doesn't provide, a data frame will be returned instead of a tsibble.
 #' @param value_column_name Any name that is preferred to have as the name of the column containing series values in the returning tsibble.
 #'
-#' @return This function returns a tsibble or a dataframe based on the validity of given key and index values.
+#' @return This function returns a tsibble or a data.frame based on the validity of given key and index values.
+#' @importFrom utils download.file unzip
 #' @export
-download_data <- function(record_id, file_name, destination_folder = '', index = NULL, key = "series_name", value_column_name = "series_value"){
+download_data_zenodo <- function(record_id, file_name, destination_folder = '', index = NULL, key = "series_name", value_column_name = "series_value"){
   
   if(is.null(record_id) | is.na(as.numeric(record_id)))
     stop("Please provide the ID of the dataset that you need to download. This should be a numerical value.")
@@ -251,14 +253,14 @@ download_data <- function(record_id, file_name, destination_folder = '', index =
       unzip(dest_file)
   }
  
-  convert_tsf_to_tsibble(tsf_file, value_column_name, key, index) # Creating a tsibble/dataframe depending on the provided key and index
+  convert_tsf_to_tsibble(tsf_file, value_column_name, key, index) # Creating a tsibble/data.frame depending on the provided key and index
 }
 
 
 
 #' get_forecastingdata function
 #' 
-#' This function downloads a zip file from Zenodo platform given the name of the dataset, unzip the contents and converts the unzipped .tsf file into a tsibble or a dataframe given the key and index.
+#' This function downloads a zip file from Zenodo platform given the name of the dataset, unzip the contents and converts the unzipped .tsf file into a tsibble or a data.frame given the key and index.
 #' 
 #' @param dataset Name of the dataset that needs to be downloaded from Zenodo.
 #' @param destination_folder Folder path where the downloaded files need to be stored. By default, it uses the R working directory to store files.
@@ -266,76 +268,96 @@ download_data <- function(record_id, file_name, destination_folder = '', index =
 #' @param key The name of the attribute that should be used as the key when creating the tsibble. The default value is "series_name" which is the key of the datasets in our repository. If doesn't provide, a data frame will be returned instead of a tsibble.
 #' @param value_column_name Any name that is preferred to have as the name of the column containing series values in the returning tsibble.
 #'
-#' @return This function returns a tsibble or a dataframe based on the validity of given key and index values.
+#' @return This function returns a tsibble or a data.frame based on the validity of given key and index values.
 #' @export
-get_forecastingdata <- function(dataset, destination_folder = '', index = NULL, key = "series_name", value_column_name = "series_value"){
+get_forecastingdata <- function(dataset=c("nn5", "nn5_without_missing", "nn5_weekly", "m1_yearly", 
+                                          "m1_quarterly", "m1_monthly", "m3_yearly", "m3_quarterly", 
+                                          "m3_monthly", "m3_other", "m4_yearly", "m4_quarterly", 
+                                          "m4_monthly", "m4_weekly", "m4_daily", "m4_hourly", 
+                                          "tourism_yearly", "tourism_quarterly", "tourism_monthly", 
+                                          "carparts", "carparts_without_missing", "hospital", "weather", 
+                                          "dominick", "fred-md", "solar_10_minutes", "solar_weekly", 
+                                          "solar_4_seconds", "wind_4_seconds", "sunspot", 
+                                          "sunspot_without_missing", "wind_farms", 
+                                          "wind_farms_without_missing", "elecdemand", "us_births", 
+                                          "saugeenday", "covid", "cif", "london_smart_meters", 
+                                          "london_smart_meters_without_missing", "web_traffic", 
+                                          "web_traffic_without_missing", "web_traffic_weekly", 
+                                          "traffic_hourly", "traffic_weekly", "electricity_hourly", 
+                                          "electricity_weekly", "pedestrians", "kdd", 
+                                          "kdd_without_missing", "aus_elecdemand"), 
+                                          destination_folder = '', index = NULL, key = "series_name", 
+                                          value_column_name = "series_value"){
+ 
+  dataset <- match.arg(dataset)
  
   # Current datasets in archive
-  forecastingdata <- readr:::read_csv(
-     "prefix,record_id,file_name
-      nn5,4656110,nn5_daily_dataset_with_missing_values
-      nn5_without_missing,4656117,nn5_daily_dataset_without_missing_values
-      nn5_weekly,4656125,nn5_weekly_dataset
-      m1_yearly,4656193,m1_yearly_dataset
-      m1_quarterly,4656154,m1_quarterly_dataset
-      m1_monthly,4656159,m1_monthly_dataset
-      m3_yearly,4656222,m3_yearly_dataset
-      m3_quarterly,4656262,m3_quarterly_dataset
-      m3_monthly,4656298,m3_monthly_dataset
-      m3_other,4656335,m3_other_dataset
-      m4_yearly,4656379,m4_yearly_dataset
-      m4_quarterly,4656410,m4_quarterly_dataset
-      m4_monthly,4656480,m4_monthly_dataset
-      m4_weekly,4656522,m4_weekly_dataset
-      m4_daily,4656548,m4_daily_dataset
-      m4_hourly,4656589,m4_hourly_dataset
-      tourism_yearly,4656103,tourism_yearly_dataset
-      tourism_quarterly,4656093,tourism_quarterly_dataset
-      tourism_monthly,4656096,tourism_monthly_dataset
-      carparts,4656022,car_parts_dataset_with_missing_values
-      carparts_without_missing,4656021,car_parts_dataset_without_missing_values
-      hospital,4656014,hospital_dataset
-      weather,4654822,weather_dataset
-      dominick,4654802,dominick_dataset
-      fred-md,4654833,fred_md_dataset
-      solar_10_minutes,4656144,solar_10_minutes_dataset
-      solar_weekly,4656151,solar_weekly_dataset
-      solar_4_seconds,4656027,solar_4_seconds_dataset
-      wind_4_seconds,4656032,wind_4_seconds_dataset
-      sunspot,4654773,sunspot_dataset_with_missing_values
-      sunspot_without_missing,4654722,sunspot_dataset_without_missing_values
-      wind_farms,4654909,wind_farms_minutely_dataset_with_missing_values
-      wind_farms_without_missing,4654858,wind_farms_minutely_dataset_without_missing_values
-      elecdemand,4656069,elecdemand_dataset
-      us_births,4656049,us_births_dataset
-      saugeenday,4656058,saugeenday_dataset
-      covid,4656009,covid_deaths_dataset
-      cif,4656042,cif_2016_dataset
-      london_smart_meters,4656072,london_smart_meters_dataset_with_missing_values
-      london_smart_meters_without_missing,4656091,london_smart_meters_dataset_without_missing_values
-      web_traffic,4656080,kaggle_web_traffic_dataset_with_missing_values
-      web_traffic_without_missing,4656075,kaggle_web_traffic_dataset_without_missing_values
-      web_traffic_weekly,4656664,kaggle_web_traffic_weekly_dataset
-      traffic_hourly,4656132,traffic_hourly_dataset
-      traffic_weekly,4656135,traffic_weekly_dataset
-      electricity_hourly,4656140,electricity_hourly_dataset
-      electricity_weekly,4656141,electricity_weekly_dataset
-      pedestrians,4656626,pedestrian_counts_dataset
-      kdd,4656719,kdd_cup_2018_dataset_with_missing_values
-      kdd_without_missing,4656756,kdd_cup_2018_dataset_without_missing_values
-      aus_elecdemand,4659727,australian_electricity_demand_dataset"
-  )
-  
-  if(dataset %in% forecastingdata$prefix){
-    required_dataset <- dplyr:::filter(forecastingdata, prefix == dataset,)
-    record_id <- required_dataset$record_id
-    file_name <- required_dataset$file_name
-    
-    download_data(record_id, file_name, destination_folder, index, key, value_column_name)
-  }else{
-    message (paste("Invalid dataset. Current archive datasets are as follows. If your dataset is not there in the below list, retrieve the record_id and file name from Zenodo and use the download_data function."))
-    stop(paste(forecastingdata$prefix, collapse=" "))
-  }
+  forecastingdata <- data.frame(nn5 = c("4656110", "nn5_daily_dataset_with_missing_values"),
+                                nn5_without_missing = c("4656117", "nn5_daily_dataset_without_missing_values"),
+                                nn5_weekly = c("4656125", "nn5_weekly_dataset"),
+                                m1_yearly = c("4656193", "m1_yearly_dataset"),
+                                m1_quarterly = c("4656154", "m1_quarterly_dataset"),
+                                m1_monthly = c("4656159", "m1_monthly_dataset"), 
+                                stringsAsFactors=FALSE )
+   
+   # TODO: Include all of those:
+# nn5,4656110,nn5_daily_dataset_with_missing_values
+# nn5_without_missing,4656117,nn5_daily_dataset_without_missing_values
+# nn5_weekly,4656125,nn5_weekly_dataset
+# m1_yearly,4656193,m1_yearly_dataset
+# m1_quarterly,4656154,m1_quarterly_dataset
+# m1_monthly,4656159,m1_monthly_dataset
+# m3_yearly,4656222,m3_yearly_dataset
+# m3_quarterly,4656262,m3_quarterly_dataset
+# m3_monthly,4656298,m3_monthly_dataset
+# m3_other,4656335,m3_other_dataset
+# m4_yearly,4656379,m4_yearly_dataset
+# m4_quarterly,4656410,m4_quarterly_dataset
+# m4_monthly,4656480,m4_monthly_dataset
+# m4_weekly,4656522,m4_weekly_dataset
+# m4_daily,4656548,m4_daily_dataset
+# m4_hourly,4656589,m4_hourly_dataset
+# tourism_yearly,4656103,tourism_yearly_dataset
+# tourism_quarterly,4656093,tourism_quarterly_dataset
+# tourism_monthly,4656096,tourism_monthly_dataset
+# carparts,4656022,car_parts_dataset_with_missing_values
+# carparts_without_missing,4656021,car_parts_dataset_without_missing_values
+# hospital,4656014,hospital_dataset
+# weather,4654822,weather_dataset
+# dominick,4654802,dominick_dataset
+# fred-md,4654833,fred_md_dataset
+# solar_10_minutes,4656144,solar_10_minutes_dataset
+# solar_weekly,4656151,solar_weekly_dataset
+# solar_4_seconds,4656027,solar_4_seconds_dataset
+# wind_4_seconds,4656032,wind_4_seconds_dataset
+# sunspot,4654773,sunspot_dataset_with_missing_values
+# sunspot_without_missing,4654722,sunspot_dataset_without_missing_values
+# wind_farms,4654909,wind_farms_minutely_dataset_with_missing_values
+# wind_farms_without_missing,4654858,wind_farms_minutely_dataset_without_missing_values
+# elecdemand,4656069,elecdemand_dataset
+# us_births,4656049,us_births_dataset
+# saugeenday,4656058,saugeenday_dataset
+# covid,4656009,covid_deaths_dataset
+# cif,4656042,cif_2016_dataset
+# london_smart_meters,4656072,london_smart_meters_dataset_with_missing_values
+# london_smart_meters_without_missing,4656091,london_smart_meters_dataset_without_missing_values
+# web_traffic,4656080,kaggle_web_traffic_dataset_with_missing_values
+# web_traffic_without_missing,4656075,kaggle_web_traffic_dataset_without_missing_values
+# web_traffic_weekly,4656664,kaggle_web_traffic_weekly_dataset
+# traffic_hourly,4656132,traffic_hourly_dataset
+# traffic_weekly,4656135,traffic_weekly_dataset
+# electricity_hourly,4656140,electricity_hourly_dataset
+# electricity_weekly,4656141,electricity_weekly_dataset
+# pedestrians,4656626,pedestrian_counts_dataset
+# kdd,4656719,kdd_cup_2018_dataset_with_missing_values
+# kdd_without_missing,4656756,kdd_cup_2018_dataset_without_missing_values
+# aus_elecdemand,4659727,australian_electricity_demand_dataset
+# 
+
+
+  rownames(forecastingdata) <- c("record_id", "file_name")
+             
+  download_data_zenodo(forecastingdata["record_id",dataset] , forecastingdata["file_name",dataset] , destination_folder, index, key, value_column_name)
 }
 
 

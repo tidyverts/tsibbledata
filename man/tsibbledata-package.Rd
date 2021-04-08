@@ -26,6 +26,12 @@ Authors:
 \itemize{
   \item Rob Hyndman
   \item Earo Wang
+  \item Rakshitha Godahewa
+}
+
+Other contributors:
+\itemize{
+  \item Christoph Bergmeir [contributor]
 }
 
 }

@@ -5,7 +5,9 @@ Description: Provides diverse datasets in the 'tsibble' data structure. These da
 Authors@R: c(
     person("Mitchell", "O'Hara-Wild", email = "mail@mitchelloharawild.com", role = c("aut", "cre")),
     person("Rob", "Hyndman", role = "aut"),
-    person("Earo", "Wang", role = "aut")
+    person("Earo", "Wang", role = "aut"),
+    person("Rakshitha", "Godahewa", role = "aut"),
+    person("Christoph", "Bergmeir", role = "ctb")
     )
 Depends:
     R (>= 3.1.3)
