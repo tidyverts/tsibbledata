@@ -2,6 +2,69 @@
 ## For more details, please visit to https://forecastingdata.org/
 
 
+
+#' Current datasets in Monash Time Series Forecasting Repository
+#'
+#' @name forecastingdata
+#' @format data.frame
+#' @keywords datasets
+forecastingdata <- data.frame(nn5 = c("4656110", "nn5_daily_dataset_with_missing_values"),
+                              nn5_without_missing = c("4656117", "nn5_daily_dataset_without_missing_values"),
+                              nn5_weekly = c("4656125", "nn5_weekly_dataset"),
+                              m1_yearly = c("4656193", "m1_yearly_dataset"),
+                              m1_quarterly = c("4656154", "m1_quarterly_dataset"),
+                              m1_monthly = c("4656159", "m1_monthly_dataset"), 
+                              m3_yearly = c("4656222", "m3_yearly_dataset"),
+                              m3_quarterly = c("4656262", "m3_quarterly_dataset"),
+                              m3_monthly = c("4656298","m3_monthly_dataset"),
+                              m3_other = c("4656335", "m3_other_dataset"),
+                              m4_yearly = c("4656379", "m4_yearly_dataset"),
+                              m4_quarterly = c("4656410", "m4_quarterly_dataset"),
+                              m4_monthly = c("4656480", "m4_monthly_dataset"),
+                              m4_weekly = c("4656522", "m4_weekly_dataset"),
+                              m4_daily = c("4656548", "m4_daily_dataset"),
+                              m4_hourly = c("4656589", "m4_hourly_dataset"),
+                              tourism_yearly = c("4656103", "tourism_yearly_dataset"),
+                              tourism_quarterly = c("4656093", "tourism_quarterly_dataset"),
+                              tourism_monthly = c("4656096", "tourism_monthly_dataset"),
+                              carparts = c("4656022", "car_parts_dataset_with_missing_values"),
+                              carparts_without_missing = c("4656021", "car_parts_dataset_without_missing_values"),
+                              hospital = c("4656014", "hospital_dataset"),
+                              weather = c("4654822", "weather_dataset"),
+                              dominick = c("4654802", "dominick_dataset"),
+                              fred_md = c("4654833", "fred_md_dataset"),
+                              solar_10_minutes = c("4656144", "solar_10_minutes_dataset"),
+                              solar_weekly = c("4656151", "solar_weekly_dataset"),
+                              solar_4_seconds = c("4656027", "solar_4_seconds_dataset"),
+                              wind_4_seconds = c("4656032", "wind_4_seconds_dataset"),
+                              sunspot = c("4654773", "sunspot_dataset_with_missing_values"),
+                              sunspot_without_missing = c("4654722", "sunspot_dataset_without_missing_values"),
+                              wind_farms = c("4654909", "wind_farms_minutely_dataset_with_missing_values"),
+                              wind_farms_without_missing = c("4654858", "wind_farms_minutely_dataset_without_missing_values"),
+                              elecdemand = c("4656069", "elecdemand_dataset"),
+                              us_births = c("4656049", "us_births_dataset"),
+                              saugeenday = c("4656058", "saugeenday_dataset"),
+                              covid = c("4656009", "covid_deaths_dataset"),
+                              cif = c("4656042", "cif_2016_dataset"),
+                              london_smart_meters = c("4656072", "london_smart_meters_dataset_with_missing_values"),
+                              london_smart_meters_without_missing = c("4656091", "london_smart_meters_dataset_without_missing_values"),
+                              web_traffic = c("4656080", "kaggle_web_traffic_dataset_with_missing_values"),
+                              web_traffic_without_missing = c("4656075", "kaggle_web_traffic_dataset_without_missing_values"),
+                              web_traffic_weekly = c("4656664", "kaggle_web_traffic_weekly_dataset"),
+                              traffic_hourly = c("4656132", "traffic_hourly_dataset"),
+                              traffic_weekly = c("4656135", "traffic_weekly_dataset"),
+                              electricity_hourly = c("4656140", "electricity_hourly_dataset"),
+                              electricity_weekly = c("4656141", "electricity_weekly_dataset"),
+                              pedestrians = c("4656626", "pedestrian_counts_dataset"),
+                              kdd = c("4656719", "kdd_cup_2018_dataset_with_missing_values"),
+                              kdd_without_missing = c("4656756", "kdd_cup_2018_dataset_without_missing_values"),
+                              aus_elecdemand = c("4659727", "australian_electricity_demand_dataset"),
+                              covid_mobility_with_missing = c("4663762", "covid_mobility_dataset_with_missing_values"),
+                              covid_mobility_without_missing = c("4663809", "covid_mobility_dataset_without_missing_values"),
+                              stringsAsFactors = FALSE )
+
+
+
 #' Convert .tsf data into tsibble format
 #'
 #' This function converts the contents in a .tsf file into a tsibble or a data.frame and returns it along with other meta-data of the dataset: frequency, horizon, whether the dataset contains missing values and whether the series have equal lengths.
@@ -212,7 +275,6 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
 #' 
 #' @param record_id Record identifier of the file that needs to be downloaded from the Monash Time Series Forecasting Repository
 #' @param file_name Name of the file (without extensions) that needs to be downloaded from the Monash Time Series Forecasting Repository
-#' @param destination_folder Folder path where the downloaded files need to be stored. By default, it uses the R working directory to store files.
 #' @param index The name of the time attribute that should be used as the index when creating the tsibble. If doesn't provide, it tries to find a valid index within the data. If there is no valid index, then a data frame will be returned instead of a tsibble.
 #' @param key The name of the attribute that should be used as the key when creating the tsibble. The default value is "series_name" which is the key of the datasets in our repository. If doesn't provide, a data frame will be returned instead of a tsibble.
 #' @param value_column_name Any name that is preferred to have as the name of the column containing series values in the returning tsibble.
@@ -225,7 +287,7 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
 #' 
 #' Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
 #' 
-download_data_zenodo <- function(record_id, file_name, destination_folder = '', index = NULL, key = "series_name", value_column_name = "series_value"){
+download_data_zenodo <- function(record_id, file_name, index = NULL, key = "series_name", value_column_name = "series_value"){
   
   if(is.null(record_id) | is.na(as.numeric(record_id)))
     stop("Please provide the ID of the dataset that you need to download. This should be a numerical value.")
@@ -233,24 +295,10 @@ download_data_zenodo <- function(record_id, file_name, destination_folder = '', 
   if(is.null(file_name) | is.na(as.character(file_name)))
     stop("Please provide the file name of the dataset that you need to download. This should be a character/string value.")
   
-  # Check whether the destination folder exists. If not create a folder at the specified path
-  if(destination_folder != '' & !file.exists(destination_folder)){
-    tryCatch({
-      dir.create(destination_folder)
-    }, error = function(e) {   
-      message(e)
-      stop("Please provide a valid path/name for destination folder")
-    })
-  }
-    
-  if(destination_folder == ''){  
-    dest_file <- paste0(file_name, ".zip")
-    tsf_file <- paste0(file_name, ".tsf")
-  }else{  
-    dest_file <- file.path(destination_folder, paste0(file_name, ".zip"))
-    tsf_file <- file.path(destination_folder, paste0(file_name, ".tsf"))
-  }
-  
+  destination_folder <- rappdirs::user_data_dir()
+ 
+  dest_file <- file.path(destination_folder, paste0(file_name, ".zip"))
+  tsf_file <- file.path(destination_folder, paste0(file_name, ".tsf"))
   
   if(!file.exists(tsf_file)){ # Check whether the required .tsf file is already there at the specified destination folder
     if(!file.exists(dest_file)){ # Check whether the required .zip file is already there at the specified destination folder. If not download the .zip file from the Monash Time Series Forecasting Repository
@@ -261,11 +309,8 @@ download_data_zenodo <- function(record_id, file_name, destination_folder = '', 
         stop("Record ID or file name is incorrect")
       })
     }
-    
-    if(destination_folder != '') # Unzip the downloaded .zip folder
-      unzip(dest_file, exdir = destination_folder)
-    else
-      unzip(dest_file)
+   
+    unzip(dest_file, exdir = destination_folder)
   }
  
   convert_tsf_to_tsibble(tsf_file, value_column_name, key, index) # Creating a tsibble/data.frame depending on the provided key and index
@@ -279,7 +324,6 @@ download_data_zenodo <- function(record_id, file_name, destination_folder = '', 
 #' For more details, please refer to our paper: Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
 #' 
 #' @param dataset Name of the dataset that needs to be downloaded from the Monash Time Series Forecasting Repository
-#' @param destination_folder Folder path where the downloaded files need to be stored. By default, it uses the R working directory to store files.
 #' @param index The name of the time attribute that should be used as the index when creating the tsibble. If doesn't provide, it tries to find a valid index within the data. If there is no valid index, then a data frame will be returned instead of a tsibble.
 #' @param key The name of the attribute that should be used as the key when creating the tsibble. The default value is "series_name" which is the key of the datasets in our repository. If doesn't provide, a data frame will be returned instead of a tsibble.
 #' @param value_column_name Any name that is preferred to have as the name of the column containing series values in the returning tsibble.
@@ -309,70 +353,14 @@ get_monash_forecasting_data <- function(dataset=c("nn5", "nn5_without_missing", 
                                           "electricity_weekly", "pedestrians", "kdd", 
                                           "kdd_without_missing", "aus_elecdemand", "covid_mobility_with_missing", 
                                           "covid_mobility_without_missing"), 
-                                          destination_folder = '', index = NULL, key = "series_name", 
+                                          index = NULL, key = "series_name", 
                                           value_column_name = "series_value"){
  
   dataset <- match.arg(dataset)
  
-  # Current datasets in archive
-  forecastingdata <- data.frame(nn5 = c("4656110", "nn5_daily_dataset_with_missing_values"),
-                                nn5_without_missing = c("4656117", "nn5_daily_dataset_without_missing_values"),
-                                nn5_weekly = c("4656125", "nn5_weekly_dataset"),
-                                m1_yearly = c("4656193", "m1_yearly_dataset"),
-                                m1_quarterly = c("4656154", "m1_quarterly_dataset"),
-                                m1_monthly = c("4656159", "m1_monthly_dataset"), 
-                                m3_yearly = c("4656222", "m3_yearly_dataset"),
-                                m3_quarterly = c("4656262", "m3_quarterly_dataset"),
-                                m3_monthly = c("4656298","m3_monthly_dataset"),
-                                m3_other = c("4656335", "m3_other_dataset"),
-                                m4_yearly = c("4656379", "m4_yearly_dataset"),
-                                m4_quarterly = c("4656410", "m4_quarterly_dataset"),
-                                m4_monthly = c("4656480", "m4_monthly_dataset"),
-                                m4_weekly = c("4656522", "m4_weekly_dataset"),
-                                m4_daily = c("4656548", "m4_daily_dataset"),
-                                m4_hourly = c("4656589", "m4_hourly_dataset"),
-                                tourism_yearly = c("4656103", "tourism_yearly_dataset"),
-                                tourism_quarterly = c("4656093", "tourism_quarterly_dataset"),
-                                tourism_monthly = c("4656096", "tourism_monthly_dataset"),
-                                carparts = c("4656022", "car_parts_dataset_with_missing_values"),
-                                carparts_without_missing = c("4656021", "car_parts_dataset_without_missing_values"),
-                                hospital = c("4656014", "hospital_dataset"),
-                                weather = c("4654822", "weather_dataset"),
-                                dominick = c("4654802", "dominick_dataset"),
-                                fred_md = c("4654833", "fred_md_dataset"),
-                                solar_10_minutes = c("4656144", "solar_10_minutes_dataset"),
-                                solar_weekly = c("4656151", "solar_weekly_dataset"),
-                                solar_4_seconds = c("4656027", "solar_4_seconds_dataset"),
-                                wind_4_seconds = c("4656032", "wind_4_seconds_dataset"),
-                                sunspot = c("4654773", "sunspot_dataset_with_missing_values"),
-                                sunspot_without_missing = c("4654722", "sunspot_dataset_without_missing_values"),
-                                wind_farms = c("4654909", "wind_farms_minutely_dataset_with_missing_values"),
-                                wind_farms_without_missing = c("4654858", "wind_farms_minutely_dataset_without_missing_values"),
-                                elecdemand = c("4656069", "elecdemand_dataset"),
-                                us_births = c("4656049", "us_births_dataset"),
-                                saugeenday = c("4656058", "saugeenday_dataset"),
-                                covid = c("4656009", "covid_deaths_dataset"),
-                                cif = c("4656042", "cif_2016_dataset"),
-                                london_smart_meters = c("4656072", "london_smart_meters_dataset_with_missing_values"),
-                                london_smart_meters_without_missing = c("4656091", "london_smart_meters_dataset_without_missing_values"),
-                                web_traffic = c("4656080", "kaggle_web_traffic_dataset_with_missing_values"),
-                                web_traffic_without_missing = c("4656075", "kaggle_web_traffic_dataset_without_missing_values"),
-                                web_traffic_weekly = c("4656664", "kaggle_web_traffic_weekly_dataset"),
-                                traffic_hourly = c("4656132", "traffic_hourly_dataset"),
-                                traffic_weekly = c("4656135", "traffic_weekly_dataset"),
-                                electricity_hourly = c("4656140", "electricity_hourly_dataset"),
-                                electricity_weekly = c("4656141", "electricity_weekly_dataset"),
-                                pedestrians = c("4656626", "pedestrian_counts_dataset"),
-                                kdd = c("4656719", "kdd_cup_2018_dataset_with_missing_values"),
-                                kdd_without_missing = c("4656756", "kdd_cup_2018_dataset_without_missing_values"),
-                                aus_elecdemand = c("4659727", "australian_electricity_demand_dataset"),
-                                covid_mobility_with_missing = c("4663762", "covid_mobility_dataset_with_missing_values"),
-                                covid_mobility_without_missing = c("4663809", "covid_mobility_dataset_without_missing_values"),
-                                stringsAsFactors = FALSE )
-   
   rownames(forecastingdata) <- c("record_id", "file_name")
              
-  download_data_zenodo(forecastingdata["record_id",dataset] , forecastingdata["file_name",dataset] , destination_folder, index, key, value_column_name)
+  download_data_zenodo(forecastingdata["record_id",dataset] , forecastingdata["file_name",dataset], index, key, value_column_name)
 }
 
 
