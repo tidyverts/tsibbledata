@@ -3,11 +3,11 @@
 
 
 
-#' Current datasets in Monash Time Series Forecasting Repository
-#'
-#' @name forecastingdata
-#' @format data.frame
-#' @keywords datasets
+# Current datasets in Monash Time Series Forecasting Repository
+#
+# @name forecastingdata
+# @format data.frame
+# @keywords datasets
 forecastingdata <- data.frame(nn5 = c("4656110", "nn5_daily_dataset_with_missing_values"),
                               nn5_without_missing = c("4656117", "nn5_daily_dataset_without_missing_values"),
                               nn5_weekly = c("4656125", "nn5_weekly_dataset"),
@@ -68,7 +68,7 @@ forecastingdata <- data.frame(nn5 = c("4656110", "nn5_daily_dataset_with_missing
 #' Convert .tsf data into tsibble format
 #'
 #' This function converts the contents in a .tsf file into a tsibble or a data.frame and returns it along with other meta-data of the dataset: frequency, horizon, whether the dataset contains missing values and whether the series have equal lengths.
-#' For more details, please refer to our paper: Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
+#' For more details on the tsf file format, please refer to: Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
 #'
 #' @param file .tsf file path
 #' @param value_column_name Any name that is preferred to have as the name of the column containing series values in the returning tsibble.
@@ -270,8 +270,8 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
 
 #' Download data from the Monash Forecasting Repository
 #' 
-#' This function downloads a zip file from the Monash Time Series Forecasting Repository given the record identifier and file name, unzip the contents and converts the unzipped .tsf file into a tsibble or a data.frame given the key and index.
-#' For more details, please refer to our paper: Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
+#' This function downloads a zip file from the Monash Time Series Forecasting Repository given the record identifier and file name, unzips the contents and converts the unzipped .tsf file into a tsibble or a data.frame given the key and index.
+#' For more details on the repository and the tsf file format, please refer to: Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
 #' 
 #' @param record_id Record identifier of the file that needs to be downloaded from the Monash Time Series Forecasting Repository
 #' @param file_name Name of the file (without extensions) that needs to be downloaded from the Monash Time Series Forecasting Repository
@@ -281,6 +281,7 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
 #'
 #' @return This function returns a tsibble or a data.frame based on the validity of given key and index values.
 #' @importFrom utils download.file unzip
+#' @importFrom rappdirs user_data_dir
 #' 
 #' @references 
 #' Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Repository. \url{https://forecastingdata.org/}
@@ -320,8 +321,8 @@ download_data_zenodo <- function(record_id, file_name, index = NULL, key = "seri
 
 #' Get data from the Monash Forecasting Repository
 #' 
-#' This function downloads a zip file from the Monash Time Series Forecasting Repository given the name of the dataset, unzip the contents and converts the unzipped .tsf file into a tsibble or a data.frame given the key and index.
-#' For more details, please refer to our paper: Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
+#' This function downloads a zip file from the Monash Time Series Forecasting Repository given the name of the dataset, unzips the contents and converts the unzipped .tsf file into a tsibble or a data.frame given the key and index.
+#' For more details on the repository and the tsf file format, please refer to: Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
 #' 
 #' @param dataset Name of the dataset that needs to be downloaded from the Monash Time Series Forecasting Repository
 #' @param index The name of the time attribute that should be used as the index when creating the tsibble. If doesn't provide, it tries to find a valid index within the data. If there is no valid index, then a data frame will be returned instead of a tsibble.
