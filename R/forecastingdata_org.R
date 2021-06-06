@@ -204,7 +204,7 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
           stop("Frequency is missing.")
         else{
           if(frequency %in% HIGH_FREQUENCIES)
-            start_time <- as.POSIXct(attributes[col], format = "%Y-%m-%d %H-%M-%S")
+            start_time <- as.POSIXct(attributes[col], format = "%Y-%m-%d %H-%M-%S", tz = "UTC")
           else if(frequency %in% LOW_FREQUENCIES)
             start_time <- as.Date(attributes[col], format = "%Y-%m-%d %H-%M-%S")
           else
@@ -214,7 +214,12 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
             stop("Incorrect timestamp format. Specify your timestamps as YYYY-mm-dd HH-MM-SS")
         }
         
-        att <- append(att, seq(start_time, length = length(series), by = FREQ_MAP[[frequency]]))
+        timestamps <- seq(start_time, length.out = length(series), by = FREQ_MAP[[frequency]])
+        
+        if(is.null(att))
+          att <- timestamps
+        else
+          att[(length(att) + 1) : ((length(att) + length(timestamps)))] <- timestamps
       }else{
         if(col_types[col] == "numeric")
           attributes[col] <- as.numeric(attributes[col])
