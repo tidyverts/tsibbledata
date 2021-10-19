@@ -270,7 +270,7 @@ NULL
 #'
 #' \code{vic_elec} is a half-hourly `tsibble` with three values:
 #'   \tabular{ll}{
-#'     Demand:      \tab Total electricity demand in MW.\cr
+#'     Demand:      \tab Total electricity demand in MWh.\cr
 #'     Temperature: \tab Temperature of Melbourne (BOM site 086071).\cr
 #'     Holiday:     \tab Indicator for if that day is a public holiday.\cr
 #' }
@@ -278,10 +278,10 @@ NULL
 #' This data is for operational demand, which is the demand met by local
 #' scheduled generating units, semi-scheduled generating units, and
 #' non-scheduled intermittent generating units of aggregate capacity larger
-#' than 30 MW, and by generation imports to the region. The operational demand
+#' than 30 MWh, and by generation imports to the region. The operational demand
 #' excludes the demand met by non-scheduled non-intermittent generating units,
 #' non-scheduled intermittent generating units of aggregate capacity smaller
-#' than 30 MW, exempt generation (e.g. rooftop solar, gas tri-generation, very
+#' than 30 MWh, exempt generation (e.g. rooftop solar, gas tri-generation, very
 #' small wind farms, etc), and demand of local scheduled loads. It also
 #' excludes some very large industrial users (such as mines or smelters).
 #'
