@@ -1,90 +1,94 @@
 ## Functions to download data files from Monash Time Series Forecasting Archive, https://zenodo.org/communities/forecasting
+## Contributed by github:rakshitha123 with modifications by github:mitchelloharawild
 ## For more details, please visit to https://forecastingdata.org/
 
-
-
-# Current datasets in Monash Time Series Forecasting Repository
-#
-# @name forecastingdata
-# @format data.frame
-# @keywords datasets
-forecastingdata <- data.frame(nn5 = c("4656110", "nn5_daily_dataset_with_missing_values"),
-                              nn5_without_missing = c("4656117", "nn5_daily_dataset_without_missing_values"),
-                              nn5_weekly = c("4656125", "nn5_weekly_dataset"),
-                              m1_yearly = c("4656193", "m1_yearly_dataset"),
-                              m1_quarterly = c("4656154", "m1_quarterly_dataset"),
-                              m1_monthly = c("4656159", "m1_monthly_dataset"), 
-                              m3_yearly = c("4656222", "m3_yearly_dataset"),
-                              m3_quarterly = c("4656262", "m3_quarterly_dataset"),
-                              m3_monthly = c("4656298","m3_monthly_dataset"),
-                              m3_other = c("4656335", "m3_other_dataset"),
-                              m4_yearly = c("4656379", "m4_yearly_dataset"),
-                              m4_quarterly = c("4656410", "m4_quarterly_dataset"),
-                              m4_monthly = c("4656480", "m4_monthly_dataset"),
-                              m4_weekly = c("4656522", "m4_weekly_dataset"),
-                              m4_daily = c("4656548", "m4_daily_dataset"),
-                              m4_hourly = c("4656589", "m4_hourly_dataset"),
-                              tourism_yearly = c("4656103", "tourism_yearly_dataset"),
-                              tourism_quarterly = c("4656093", "tourism_quarterly_dataset"),
-                              tourism_monthly = c("4656096", "tourism_monthly_dataset"),
-                              carparts = c("4656022", "car_parts_dataset_with_missing_values"),
-                              carparts_without_missing = c("4656021", "car_parts_dataset_without_missing_values"),
-                              hospital = c("4656014", "hospital_dataset"),
-                              weather = c("4654822", "weather_dataset"),
-                              dominick = c("4654802", "dominick_dataset"),
-                              fred_md = c("4654833", "fred_md_dataset"),
-                              solar_10_minutes = c("4656144", "solar_10_minutes_dataset"),
-                              solar_weekly = c("4656151", "solar_weekly_dataset"),
-                              solar_4_seconds = c("4656027", "solar_4_seconds_dataset"),
-                              wind_4_seconds = c("4656032", "wind_4_seconds_dataset"),
-                              sunspot = c("4654773", "sunspot_dataset_with_missing_values"),
-                              sunspot_without_missing = c("4654722", "sunspot_dataset_without_missing_values"),
-                              wind_farms = c("4654909", "wind_farms_minutely_dataset_with_missing_values"),
-                              wind_farms_without_missing = c("4654858", "wind_farms_minutely_dataset_without_missing_values"),
-                              elecdemand = c("4656069", "elecdemand_dataset"),
-                              us_births = c("4656049", "us_births_dataset"),
-                              saugeenday = c("4656058", "saugeenday_dataset"),
-                              covid = c("4656009", "covid_deaths_dataset"),
-                              cif = c("4656042", "cif_2016_dataset"),
-                              london_smart_meters = c("4656072", "london_smart_meters_dataset_with_missing_values"),
-                              london_smart_meters_without_missing = c("4656091", "london_smart_meters_dataset_without_missing_values"),
-                              web_traffic = c("4656080", "kaggle_web_traffic_dataset_with_missing_values"),
-                              web_traffic_without_missing = c("4656075", "kaggle_web_traffic_dataset_without_missing_values"),
-                              web_traffic_weekly = c("4656664", "kaggle_web_traffic_weekly_dataset"),
-                              traffic_hourly = c("4656132", "traffic_hourly_dataset"),
-                              traffic_weekly = c("4656135", "traffic_weekly_dataset"),
-                              electricity_hourly = c("4656140", "electricity_hourly_dataset"),
-                              electricity_weekly = c("4656141", "electricity_weekly_dataset"),
-                              pedestrians = c("4656626", "pedestrian_counts_dataset"),
-                              kdd = c("4656719", "kdd_cup_2018_dataset_with_missing_values"),
-                              kdd_without_missing = c("4656756", "kdd_cup_2018_dataset_without_missing_values"),
-                              aus_elecdemand = c("4659727", "australian_electricity_demand_dataset"),
-                              covid_mobility_with_missing = c("4663762", "covid_mobility_dataset_with_missing_values"),
-                              covid_mobility_without_missing = c("4663809", "covid_mobility_dataset_without_missing_values"),
-                              stringsAsFactors = FALSE )
-
-
-
-#' Convert .tsf data into tsibble format
+#' Get data from the Monash Forecasting Repository
 #'
-#' This function converts the contents in a .tsf file into a tsibble or a data.frame and returns it along with other meta-data of the dataset: frequency, horizon, whether the dataset contains missing values and whether the series have equal lengths.
-#' For more details on the tsf file format, please refer to: Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
+#' This function downloads datasets from the Monash Time Series Forecasting
+#' Repository (<https://forecastingdata.org/>) and reads them in as a tsibble.
+#' Downloaded data will be stored locally, allowing subsequent use of the data
+#' without downloading. By default, the data is stored the appropriate
+#' application data directory which varies by your operating system. The storage
+#' path for these datasets can be changed by setting the `rpkg_tsibbledata`
+#' option with `options(rpkg_tsibbledata = /path/to/datadir)`
 #'
-#' @param file .tsf file path
-#' @param value_column_name Any name that is preferred to have as the name of the column containing series values in the returning tsibble.
-#' @param key The name of the attribute that should be used as the key when creating the tsibble. If doesn't provide, a data frame will be returned instead of a tsibble.
-#' @param index The name of the time attribute that should be used as the index when creating the tsibble. If doesn't provide, it will search for a valid index. When no valid index found, a data frame will be returned instead of a tsibble.
+#' @details
 #'
-#' @return This function returns a tsibble or a data.frame based on the validity of given key and index values.
-#' @importFrom utils head tail
-#' 
-#' @references 
+#' Datasets from this repository are stored in a tsf file format, which stores
+#' time series metadata at the top of the file. This function uses this metadata
+#' to produce a tsibble dataset, ready for analysis in R. For more details on
+#' the repository and the tsf file format, please refer to: Godahewa, R.,
+#' Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash
+#' Time Series Forecasting Archive.
+#'
+#' @param record_id Record ID of the dataset to be downloaded from the Monash Time Series Forecasting Repository. A complete table of datasets which can be obtained with this function can be found here: <https://forecastingdata.org/#datasets>. From this link, the data's `record_id` can be found in the URL of the download link provided in the table (it should look like https://zenodo.org/record/<Record ID>). This can also simply be a link to the zenodo record.
+#'
+#' @return A tsibble.
+#'
+#' @references
 #' Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Repository. \url{https://forecastingdata.org/}
-#' 
+#'
 #' Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
-#' 
-convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", key = NULL, index = NULL){
-  
+#'
+#' @export
+monash_forecasting_repository <- function(record_id){
+  # Parse URL for record ID if provided
+  record_id <- sub("^.*zenodo.org/record/", "", record_id)
+
+  # Download and unzip the data
+  tsf_file <- download_zenodo_record(record_id)
+
+  # Read the tsf file in as a data frame
+  data <- read_tsf(tsf_file, value_column_name)
+
+  # Convert to a tsibble
+  cn <- colnames(data)
+  is_index <- vapply(
+    data[seq_len(ncol(data)-1)],
+    inherits, what = c("POSIXt", "Date"),
+    logical(1L)
+  )
+
+  tsibble::build_tsibble(
+    data,
+    key = cn[which(!is_index)], index = cn[which(is_index)],
+    ordered = TRUE
+  )
+}
+
+#' @importFrom utils download.file unzip
+download_zenodo_record <- function(record_id){
+  if(is.null(record_id) | is.na(as.numeric(record_id)))
+    stop("Please provide the ID of the dataset that you need to download. This should be a numerical value.")
+
+  data_name <- mfr_ids[record_id]
+  if(is.na(data_name) && interactive()) {
+    "Could not find the file name for the dataset with this record_id."
+    data_name <- readline("Could not find the file name for the dataset with this record_id.\nPlease provide the name of the file from the provided Zenodo record that you'd like to import.")
+    # Remove file exts and paths from file name.
+    data_name <- basename(sub("\\..+", "", data_name))
+  }
+
+  dest_file <- tsibbledata_path(record_id, paste0(data_name, ".zip"))
+  tsf_file <- tsibbledata_path(record_id, paste0(data_name, ".tsf"))
+
+  if(!file.exists(tsf_file)){ # Check whether the required .tsf file is already there at the specified destination folder
+    if(!file.exists(dest_file)){ # Check whether the required .zip file is already there at the specified destination folder. If not download the .zip file from the Monash Time Series Forecasting Repository
+      tryCatch({
+        download.file(paste0("https://zenodo.org/record/", record_id, "/files/", data_name, ".zip"), destfile = dest_file)
+      }, error = function(e) {
+        message(e)
+        stop("Unable to download dataset from the Monash Forecasting Repository.\nCheck that the record ID correctly matches the ID in the data's URL: https://zenodo.org/record/<Record ID>")
+      })
+    }
+
+    unzip(dest_file, exdir = tsibbledata_path(record_id))
+  }
+
+  tsf_file
+}
+
+read_tsf <- function(file, index = NULL) {
   # Extend these frequency lists as required
   LOW_FREQUENCIES <- c("daily", "weekly", "monthly", "quarterly", "yearly")
   LOW_FREQ_VALS <- c("1 day", "1 week", "1 month", "3 months", "1 year")
@@ -92,15 +96,15 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
   HIGH_FREQ_VALS <- c("4 sec", "1 min", "10 min", "30 min", "1 hour")
   FREQUENCIES <- c(LOW_FREQUENCIES, HIGH_FREQUENCIES)
   FREQ_VALS <- c(LOW_FREQ_VALS, HIGH_FREQ_VALS)
-  
-  
+
+
   # Create a hashmap containing possible frequency key-value pairs
   FREQ_MAP <- list()
-  
+
   for(f in seq_along(FREQUENCIES))
     FREQ_MAP[[FREQUENCIES[f]]] <- FREQ_VALS[f]
-  
-  
+
+
   if(is.character(file)) {
     file <- file(file, "r")
     on.exit(close(file))
@@ -111,263 +115,158 @@ convert_tsf_to_tsibble <-   function(file, value_column_name = "series_value", k
     open(file, "r")
     on.exit(close(file))
   }
-  
+
   # Read meta-data
-  col_names <- NULL
-  col_types <- NULL
-  frequency <- NULL
-  forecast_horizon <- NULL
-  contain_missing_values <- NULL
-  contain_equal_length <- NULL
-  index_var <- NULL
-  
+  col_types <- list()
+  metadata <- list()
+
   line <- readLines(file, n = 1) # n is no: of lines to read
-  
-  while(length(line) && regexpr('^[[:space:]]*@data', line, perl = TRUE) == -1) { # Until read @data, run this loop (-1 indicate no match with the regular expression yet)
-    
-    if(regexpr('^[[:space:]]*@', line, perl = TRUE) > 0) { # This condition will be true for lines starting with @
-      
-      con <- textConnection(line)
-      line <- scan(con, character(), quiet = TRUE) # Creating a vector containing the words in a line (ex: "@attribute" "series_name" "string")
-      close(con)
-      
+
+  # Incrementally read metadata until @data line is read.
+  while(length(line) && !grepl('^[[:space:]]*@data', line, perl = TRUE)) {
+    # If the line contains metadata (line starting with @), store it
+    if(grepl('^[[:space:]]*@', line, perl = TRUE)) {
+      # Read separate words from line
+      line <- scan(text = line, what = character(), quiet = TRUE) # Creating a vector containing the words in a line (ex: "@attribute" "series_name" "string")
+
+      # Column names / type
       if(line[1] == "@attribute"){
-        if(length(line) != 3)  # Attributes have both name and type
+        if(length(line) != 3)  # Attributes must have both name and type
           stop("Invalid meta-data specification.")
-        
-        if(is.null(index) & line[3] == "date") # Searching for a valid index, if index is not given 
-          index_var <- line[2]
-        
-        col_names <- c(col_names, line[2])
-        col_types <- c(col_types, line[3])
-      }else{
+        # if(is.null(index) & line[3] == "date") # Searching for a valid index, if index is not given
+        #   index_var <- line[2]
+        col_types[[line[2]]] <- line[3]
+      } else {
         if(length(line) != 2) # Other meta-data have only values
           stop("Invalid meta-data specification.")
-        
-        if(line[1] == "@frequency")
-          frequency <- line[2]
-        else if(line[1] == "@horizon")
-          forecast_horizon <- as.numeric(line[2])
-        else if(line[1] == "@missing")
-          contain_missing_values <- as.logical(line[2])
-        else if(line[1] == "@equallength")
-          contain_equal_length <- as.logical(line[2])
+        metadata[[substring(line[1], 2)]] <- line[2]
       }
     }
     line <- readLines(file, n = 1)
   }
-  
+
   if(length(line) == 0)
     stop("Missing data section.")
-  if(is.null(col_names))
+  if(length(col_types) == 0)
     stop("Missing attribute section.")
-  
+
   line <- readLines(file, n = 1)
-  
+
   if(length(line) == 0)
     stop("Missing series information under data section.")
-  
-  att_list <- list()
-  
-  for(col in col_names)
-    att_list[[col]] <- NULL
-    
-  values <- NULL
-  row_count <- 0
-  
+
+  data <- list()
+
   # Get data
   while(length(line) != 0){
-    full_info <- strsplit(line, ":")[[1]]
-    
-    if(length(full_info) != length(col_names)+1)
+    row_data <- strsplit(line, ":")[[1]]
+
+    if(length(row_data) != length(col_types)+1)
       stop("Missing attributes/values in series.")
-    
-    series <- strsplit(tail(full_info, 1), ",")[[1]]
-    series[which(series == "?")] <- NA
-    series <- as.numeric(series)
-    
+
+    # Parse in data as numeric
+    series <- scan(text = row_data[length(row_data)], sep=",",
+                   na.strings = "?", quiet = TRUE)
     if(all(is.na(series)))
       stop("All series values are missing. A given series should contains a set of comma separated numeric values. At least one numeric value should be there in a series.")
-    
-    values <- c(values, series)
-    row_count <- row_count + length(series)
-    
-    attributes <- full_info[-length(full_info)]
-    
-    for(col in seq_along(col_names)){
-      
-      att <- att_list[[col_names[col]]]
-      
+
+    # Add attribute columns to data
+    for(col in seq_along(col_types)){
       # This format supports 3 attribute types: string, numeric and date
-      if(col_types[col] == "date"){
-        if(is.null(frequency))
-          stop("Frequency is missing.")
-        else{
-          if(frequency %in% HIGH_FREQUENCIES)
-            start_time <- as.POSIXct(attributes[col], format = "%Y-%m-%d %H-%M-%S", tz = "UTC")
-          else if(frequency %in% LOW_FREQUENCIES)
-            start_time <- as.Date(attributes[col], format = "%Y-%m-%d %H-%M-%S")
-          else
-            stop("Invalid frequency.")
-          
-          if(is.na(start_time))
-            stop("Incorrect timestamp format. Specify your timestamps as YYYY-mm-dd HH-MM-SS")
-        }
-        
-        timestamps <- seq(start_time, length.out = length(series), by = FREQ_MAP[[frequency]])
-        
-        if(is.null(att))
-          att <- timestamps
+      val <- if(col_types[[col]] == "date"){
+        if(is.null(metadata$frequency)) stop("Frequency is missing.")
+        if(metadata$frequency %in% HIGH_FREQUENCIES)
+          start_time <- as.POSIXct(row_data[[col]], format = "%Y-%m-%d %H-%M-%S", tz = "UTC")
+        else if(metadata$frequency %in% LOW_FREQUENCIES)
+          start_time <- as.Date(row_data[[col]], format = "%Y-%m-%d %H-%M-%S")
         else
-          att[(length(att) + 1) : ((length(att) + length(timestamps)))] <- timestamps
-      }else{
-        if(col_types[col] == "numeric")
-          attributes[col] <- as.numeric(attributes[col])
-        else if(col_types[col] == "string")
-          attributes[col] <- as.character(attributes[col])
+          stop("Invalid frequency.")
+
+        if(is.na(start_time)) stop("Incorrect timestamp format. Specify your timestamps as YYYY-mm-dd HH-MM-SS")
+        seq(start_time, length.out = length(series), by = FREQ_MAP[[metadata$frequency]])
+      } else {
+        if(col_types[[col]] == "numeric")
+          as.numeric(row_data[[col]])
+        else if(col_types[[col]] == "string")
+          as.character(row_data[[col]])
         else
           stop("Invalid attribute type.")
-        
-        if(is.na(attributes[col]))
-          stop("Invalid attribute values.")
-        
-        att <- append(att, rep(attributes[col], length(series)))
       }
-      
-      att_list[[col_names[col]]] <- att
+
+      # Add parsed value to dataset
+      data[[names(col_types)[[col]]]] <-
+        if(is.null(data[[names(col_types)[[col]]]]))
+          rep(val, length.out = length(series))
+        else
+          c(data[[names(col_types)[[col]]]], rep(val, length.out = length(series)))
     }
-    
+
+    # Add series value column to data
+    data[["value"]] <- c(data[["value"]], series)
+
     line <- readLines(file, n = 1)
   }
-  
-  data <- as.data.frame(matrix(nrow = row_count, ncol = length(col_names) + 1))
-  colnames(data) <- c(col_names, value_column_name)
-  
-  for(col in col_names)
-    data[[col]] <- att_list[[col]]
-    
-  data[[value_column_name]] <- values
-  
-  if(!(is.null(key))){
-    if(!(key %in% col_names))
-      stop("Invalid key. Cannot convert data into tsibble format.")
-    else{
-      if(is.null(index)){
-        if(is.null(index_var))
-          cat("Index is not provided. No valid index found in data. Returning a data.frame.")
-        else
-          data <- tsibble::build_tsibble(x = data, key = key, index = index_var, ordered = FALSE)
-      }else{
-        if(!(index %in% col_names))
-          stop("Invalid index Cannot convert data into tsibble format.")
-        else
-          data <- tsibble::build_tsibble(x = data, key = key, index = index, ordered = FALSE)
-      }
-    }
-  }else{
-    cat("Key is not provided. Returning a data.frame.")
-  }
-  
-  list(data, frequency, forecast_horizon, contain_missing_values, contain_equal_length)
+
+  data <- as.data.frame(data)
+  attributes(data)[names(metadata)] <- metadata
+
+  data
 }
 
-
-
-#' Download data from the Monash Forecasting Repository
-#' 
-#' This function downloads a zip file from the Monash Time Series Forecasting Repository given the record identifier and file name, unzips the contents and converts the unzipped .tsf file into a tsibble or a data.frame given the key and index.
-#' For more details on the repository and the tsf file format, please refer to: Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
-#' 
-#' @param record_id Record identifier of the file that needs to be downloaded from the Monash Time Series Forecasting Repository
-#' @param file_name Name of the file (without extensions) that needs to be downloaded from the Monash Time Series Forecasting Repository
-#' @param index The name of the time attribute that should be used as the index when creating the tsibble. If doesn't provide, it tries to find a valid index within the data. If there is no valid index, then a data frame will be returned instead of a tsibble.
-#' @param key The name of the attribute that should be used as the key when creating the tsibble. The default value is "series_name" which is the key of the datasets in our repository. If doesn't provide, a data frame will be returned instead of a tsibble.
-#' @param value_column_name Any name that is preferred to have as the name of the column containing series values in the returning tsibble.
-#'
-#' @return This function returns a tsibble or a data.frame based on the validity of given key and index values.
-#' @importFrom utils download.file unzip
-#' @importFrom rappdirs user_data_dir
-#' 
-#' @references 
-#' Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Repository. \url{https://forecastingdata.org/}
-#' 
-#' Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
-#' 
-download_data_zenodo <- function(record_id, file_name, index = NULL, key = "series_name", value_column_name = "series_value"){
-  
-  if(is.null(record_id) | is.na(as.numeric(record_id)))
-    stop("Please provide the ID of the dataset that you need to download. This should be a numerical value.")
-  
-  if(is.null(file_name) | is.na(as.character(file_name)))
-    stop("Please provide the file name of the dataset that you need to download. This should be a character/string value.")
-  
-  destination_folder <- rappdirs::user_data_dir()
- 
-  dest_file <- file.path(destination_folder, paste0(file_name, ".zip"))
-  tsf_file <- file.path(destination_folder, paste0(file_name, ".tsf"))
-  
-  if(!file.exists(tsf_file)){ # Check whether the required .tsf file is already there at the specified destination folder
-    if(!file.exists(dest_file)){ # Check whether the required .zip file is already there at the specified destination folder. If not download the .zip file from the Monash Time Series Forecasting Repository
-      tryCatch({
-        download.file(paste0("https://zenodo.org/record/", record_id, "/files/", file_name, ".zip"), destfile = dest_file)
-      }, error = function(e) {   
-        message(e)
-        stop("Record ID or file name is incorrect")
-      })
-    }
-   
-    unzip(dest_file, exdir = destination_folder)
-  }
- 
-  convert_tsf_to_tsibble(tsf_file, value_column_name, key, index) # Creating a tsibble/data.frame depending on the provided key and index
-}
-
-
-
-#' Get data from the Monash Forecasting Repository
-#' 
-#' This function downloads a zip file from the Monash Time Series Forecasting Repository given the name of the dataset, unzips the contents and converts the unzipped .tsf file into a tsibble or a data.frame given the key and index.
-#' For more details on the repository and the tsf file format, please refer to: Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
-#' 
-#' @param dataset Name of the dataset that needs to be downloaded from the Monash Time Series Forecasting Repository
-#' @param index The name of the time attribute that should be used as the index when creating the tsibble. If doesn't provide, it tries to find a valid index within the data. If there is no valid index, then a data frame will be returned instead of a tsibble.
-#' @param key The name of the attribute that should be used as the key when creating the tsibble. The default value is "series_name" which is the key of the datasets in our repository. If doesn't provide, a data frame will be returned instead of a tsibble.
-#' @param value_column_name Any name that is preferred to have as the name of the column containing series values in the returning tsibble.
-#'
-#' @return This function returns a tsibble or a data.frame based on the validity of given key and index values.
-#' 
-#' @references 
-#' Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Repository. \url{https://forecastingdata.org/}
-#' 
-#' Godahewa, R., Bergmeir, C., Webb, G. I., Hyndman, R. J. & Montero-Manso, P. (2021), Monash Time Series Forecasting Archive.
-#' 
-#' @export
-get_monash_forecasting_data <- function(dataset=c("nn5", "nn5_without_missing", "nn5_weekly", "m1_yearly", 
-                                          "m1_quarterly", "m1_monthly", "m3_yearly", "m3_quarterly", 
-                                          "m3_monthly", "m3_other", "m4_yearly", "m4_quarterly", 
-                                          "m4_monthly", "m4_weekly", "m4_daily", "m4_hourly", 
-                                          "tourism_yearly", "tourism_quarterly", "tourism_monthly", 
-                                          "carparts", "carparts_without_missing", "hospital", "weather", 
-                                          "dominick", "fred_md", "solar_10_minutes", "solar_weekly", 
-                                          "solar_4_seconds", "wind_4_seconds", "sunspot", 
-                                          "sunspot_without_missing", "wind_farms", 
-                                          "wind_farms_without_missing", "elecdemand", "us_births", 
-                                          "saugeenday", "covid", "cif", "london_smart_meters", 
-                                          "london_smart_meters_without_missing", "web_traffic", 
-                                          "web_traffic_without_missing", "web_traffic_weekly", 
-                                          "traffic_hourly", "traffic_weekly", "electricity_hourly", 
-                                          "electricity_weekly", "pedestrians", "kdd", 
-                                          "kdd_without_missing", "aus_elecdemand", "covid_mobility_with_missing", 
-                                          "covid_mobility_without_missing"), 
-                                          index = NULL, key = "series_name", 
-                                          value_column_name = "series_value"){
- 
-  dataset <- match.arg(dataset)
- 
-  rownames(forecastingdata) <- c("record_id", "file_name")
-             
-  download_data_zenodo(forecastingdata["record_id",dataset] , forecastingdata["file_name",dataset], index, key, value_column_name)
-}
-
-
-
+# Lookup table for file names from Zenodo IDs.
+# Ideally this would be from the Zenodo API, but that requires auth.
+mfr_ids <- c(
+  "4656110" = "nn5_daily_dataset_with_missing_values",
+  "4656117" = "nn5_daily_dataset_without_missing_values",
+  "4656125" = "nn5_weekly_dataset",
+  "4656193" = "m1_yearly_dataset",
+  "4656154" = "m1_quarterly_dataset",
+  "4656159" = "m1_monthly_dataset",
+  "4656222" = "m3_yearly_dataset",
+  "4656262" = "m3_quarterly_dataset",
+  "4656298" = "m3_monthly_dataset",
+  "4656335" = "m3_other_dataset",
+  "4656379" = "m4_yearly_dataset",
+  "4656410" = "m4_quarterly_dataset",
+  "4656480" = "m4_monthly_dataset",
+  "4656522" = "m4_weekly_dataset",
+  "4656548" = "m4_daily_dataset",
+  "4656589" = "m4_hourly_dataset",
+  "4656103" = "tourism_yearly_dataset",
+  "4656093" = "tourism_quarterly_dataset",
+  "4656096" = "tourism_monthly_dataset",
+  "4656022" = "car_parts_dataset_with_missing_values",
+  "4656021" = "car_parts_dataset_without_missing_values",
+  "4656014" = "hospital_dataset",
+  "4654822" = "weather_dataset",
+  "4654802" = "dominick_dataset",
+  "4654833" = "fred_md_dataset",
+  "4656144" = "solar_10_minutes_dataset",
+  "4656151" = "solar_weekly_dataset",
+  "4656027" = "solar_4_seconds_dataset",
+  "4656032" = "wind_4_seconds_dataset",
+  "4654773" = "sunspot_dataset_with_missing_values",
+  "4654722" = "sunspot_dataset_without_missing_values",
+  "4654909" = "wind_farms_minutely_dataset_with_missing_values",
+  "4654858" = "wind_farms_minutely_dataset_without_missing_values",
+  "4656069" = "elecdemand_dataset",
+  "4656049" = "us_births_dataset",
+  "4656058" = "saugeenday_dataset",
+  "4656009" = "covid_deaths_dataset",
+  "4656042" = "cif_2016_dataset",
+  "4656072" = "london_smart_meters_dataset_with_missing_values",
+  "4656091" = "london_smart_meters_dataset_without_missing_values",
+  "4656080" = "kaggle_web_traffic_dataset_with_missing_values",
+  "4656075" = "kaggle_web_traffic_dataset_without_missing_values",
+  "4656664" = "kaggle_web_traffic_weekly_dataset",
+  "4656132" = "traffic_hourly_dataset",
+  "4656135" = "traffic_weekly_dataset",
+  "4656140" = "electricity_hourly_dataset",
+  "4656141" = "electricity_weekly_dataset",
+  "4656626" = "pedestrian_counts_dataset",
+  "4656719" = "kdd_cup_2018_dataset_with_missing_values",
+  "4656756" = "kdd_cup_2018_dataset_without_missing_values",
+  "4659727" = "australian_electricity_demand_dataset",
+  "4663762" = "covid_mobility_dataset_with_missing_values",
+  "4663809" = "covid_mobility_dataset_without_missing_values"
+)

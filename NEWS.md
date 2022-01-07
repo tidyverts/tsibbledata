@@ -1,5 +1,7 @@
 # tsibbledata (development version)
 
+* Added `monash_forecasting_repository()` for access to tsibble formatted data
+  from the Monash Forecasting Repository (https://forecastingdata.org/).
 * Documentation improvements
 
 # tsibbledata 0.3.0 (17th March 2021)
