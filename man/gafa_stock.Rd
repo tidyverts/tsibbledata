@@ -7,7 +7,7 @@
 Time series of class \code{tsibble}
 }
 \source{
-Yahoo Finance historical data, \url{https://finance.yahoo.com/}
+Yahoo Finance historical data
 }
 \description{
 Historical stock prices from 2014-2018 for Google, Amazon, Facebook and Apple.

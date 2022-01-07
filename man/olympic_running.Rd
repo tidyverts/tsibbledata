@@ -7,7 +7,7 @@
 Time series of class \code{tsibble}
 }
 \source{
-\url{https://www.olympic.org/athletics}
+\url{https://olympics.com/en/sports/athletics/}
 }
 \description{
 \code{olympic_running} is a quadrennial \code{tsibble} with one value:

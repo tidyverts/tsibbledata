@@ -42,7 +42,7 @@ NULL
 #' The data contains missing values in 1916, 1940 and 1944 due to the World Wars.
 #'
 #' @source
-#' <https://www.olympic.org/athletics>
+#' <https://olympics.com/en/sports/athletics/>
 #'
 #' @name olympic_running
 #' @format Time series of class `tsibble`
@@ -176,7 +176,7 @@ NULL
 #' }
 #'
 #' @source
-#' Yahoo Finance historical data, <https://finance.yahoo.com/>
+#' Yahoo Finance historical data
 #'
 #' @name gafa_stock
 #' @format Time series of class `tsibble`
