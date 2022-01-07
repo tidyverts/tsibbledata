@@ -3,6 +3,4 @@
 export(monash_forecasting_repository)
 importFrom(rappdirs,user_data_dir)
 importFrom(utils,download.file)
-importFrom(utils,head)
-importFrom(utils,tail)
 importFrom(utils,unzip)

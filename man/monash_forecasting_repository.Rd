@@ -4,24 +4,13 @@
 \alias{monash_forecasting_repository}
 \title{Get data from the Monash Forecasting Repository}
 \usage{
-monash_forecasting_repository(
-  record_id,
-  index = NULL,
-  key = "series_name",
-  value_column_name = "series_value"
-)
+monash_forecasting_repository(record_id)
 }
 \arguments{
-\item{record_id}{Record ID of the dataset to be downloaded from the Monash Time Series Forecasting Repository. A complete table of datasets which can be obtained with this function can be found here: \url{https://forecastingdata.org/#datasets}. From this link, the data's \code{record_id} can be found in the URL of the download link provided in the table (it should look like https://zenodo.org/record/<Record ID>).}
-
-\item{index}{The name of the time attribute that should be used as the index when creating the tsibble. If doesn't provide, it tries to find a valid index within the data. If there is no valid index, then a data frame will be returned instead of a tsibble.}
-
-\item{key}{The name of the attribute that should be used as the key when creating the tsibble. The default value is "series_name" which is the key of the datasets in our repository. If doesn't provide, a data frame will be returned instead of a tsibble.}
-
-\item{value_column_name}{Any name that is preferred to have as the name of the column containing series values in the returning tsibble.}
+\item{record_id}{Record ID of the dataset to be downloaded from the Monash Time Series Forecasting Repository. A complete table of datasets which can be obtained with this function can be found here: \url{https://forecastingdata.org/#datasets}. From this link, the data's \code{record_id} can be found in the URL of the download link provided in the table (it should look like https://zenodo.org/record/<Record ID>). This can also simply be a link to the zenodo record.}
 }
 \value{
-This function returns a tsibble or a data.frame based on the validity of given key and index values.
+A tsibble.
 }
 \description{
 This function downloads datasets from the Monash Time Series Forecasting

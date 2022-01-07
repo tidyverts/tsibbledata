@@ -39,7 +39,7 @@ monash_forecasting_repository <- function(record_id){
   tsf_file <- download_zenodo_record(record_id)
 
   # Read the tsf file in as a data frame
-  data <- read_tsf(tsf_file, value_column_name)
+  data <- read_tsf(tsf_file)
 
   # Convert to a tsibble
   cn <- colnames(data)
@@ -88,7 +88,7 @@ download_zenodo_record <- function(record_id){
   tsf_file
 }
 
-read_tsf <- function(file, index = NULL) {
+read_tsf <- function(file) {
   # Extend these frequency lists as required
   LOW_FREQUENCIES <- c("daily", "weekly", "monthly", "quarterly", "yearly")
   LOW_FREQ_VALS <- c("1 day", "1 week", "1 month", "3 months", "1 year")
@@ -133,8 +133,6 @@ read_tsf <- function(file, index = NULL) {
       if(line[1] == "@attribute"){
         if(length(line) != 3)  # Attributes must have both name and type
           stop("Invalid meta-data specification.")
-        # if(is.null(index) & line[3] == "date") # Searching for a valid index, if index is not given
-        #   index_var <- line[2]
         col_types[[line[2]]] <- line[3]
       } else {
         if(length(line) != 2) # Other meta-data have only values
