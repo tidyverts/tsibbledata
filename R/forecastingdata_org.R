@@ -53,8 +53,8 @@ monash_forecasting_repository <- function(record_id){
     pos <- vctrs::vec_group_loc(data[-ncol(data)])$loc
     idx <- lapply(pos, seq_along)
     data["index"] <- unlist(idx, recursive = FALSE, use.names = FALSE)[unlist(pos, recursive = FALSE, use.names = FALSE)]
-    data[(-1:0) + ncol(data)] <- data[(0:-1) + ncol(data)]
-    cn <- c(cn, "index")
+    data <- data[c(seq_len(ncol(data)-2), ncol(data), ncol(data)-1)]
+    cn <- colnames(data)
     is_index <- c(is_index, TRUE)
   }
 
