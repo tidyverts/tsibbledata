@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/tidyverts/tsibbledata/workflows/R-CMD-check/badge.svg)](https://github.com/tidyverts/tsibbledata/actions)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/tsibbledata)](https://cran.r-project.org/package=tsibbledata)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/tsibbledata)](https://cran.r-project.org/package=tsibbledata)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->

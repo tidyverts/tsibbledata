@@ -22,8 +22,6 @@ knitr::opts_chunk$set(
   
 This package provides examples of [tsibble](https://tsibble.tidyverts.org/) datasets which can be used within the [tidyverts](https://tidyverts.org/) family of packages.
 
-package
-
 ## Installation
 
 You could install the stable version on [CRAN](https://cran.r-project.org/package=tsibbledata):
