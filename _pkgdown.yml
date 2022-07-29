@@ -43,3 +43,8 @@ reference:
   - olympic_running
   - PBS
   - pelt
+- title: Functions
+  desc: >
+    Functions to retrieve data.
+  contents:
+  - monash_forecasting_repository
