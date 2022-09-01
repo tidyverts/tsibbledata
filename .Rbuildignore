@@ -14,3 +14,5 @@ Makefile
 ^tic\.R$
 ^\.github/workflows/R-CMD-check\.yaml$
 ^\.github$
+^revdep$
+^CRAN-SUBMISSION$
