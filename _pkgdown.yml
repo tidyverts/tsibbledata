@@ -3,6 +3,9 @@ url: https://tsibbledata.tidyverts.org
 template:
   params:
     bootswatch: cosmo
+  includes:
+    in_header: |
+      <script defer data-domain="tsibbledata.tidyverts.org" src="https://track.mitchelloharawild.com/js/plausible.js"></script>
 
 development:
   mode: auto
