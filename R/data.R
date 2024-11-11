@@ -302,7 +302,7 @@ NULL
 #'
 #' Quarterly estimates of selected indicators of manufacturing production in Australia.
 #'
-#' \code{aus_production} is a half-hourly `tsibble` with six values:
+#' \code{aus_production} is a quarterly `tsibble` with six values:
 #'   \tabular{ll}{
 #'     Beer:       \tab Beer production in megalitres.\cr
 #'     Tobacco:    \tab Tobacco and cigarette production in tonnes.\cr
